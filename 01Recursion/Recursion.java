@@ -15,12 +15,21 @@ public class Recursion{
   }
 
 
-//   public int fib(int n){
-//     if (n<0){
-//       throw new IllegalArgumentException();
-//     }
+  public int fib(int n){
+    if (n<0){
+      throw new IllegalArgumentException();
+    } else {
+      return fibHelper(n,0,1);
+    }
+  }
 
-//   }
+  public int fibHelper(int index, int two, int one){
+    if (index == 0){
+      return two;
+    } else {
+      return fibHelper(index - 1, one, two + one);
+    }
+  }
 //   public double sqrt(double n){
 //     if (n<0){
 //       throw new IllegalArgumentException();
