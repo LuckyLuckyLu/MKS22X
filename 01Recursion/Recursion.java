@@ -30,11 +30,22 @@ public class Recursion{
       return fibHelper(index - 1, one, two + one);
     }
   }
-//   public double sqrt(double n){
-//     if (n<0){
-//       throw new IllegalArgumentException();
-//     }
-//     // based on Newton's Square Root Approximation.
+  // based on Newton's Square Root Approximation.
+  public double sqrt(double n){
+    if (n<0){
+      throw new IllegalArgumentException();
+    } else if (n == 0){
+      return 0d;
+    } else {
+      return sqrtHelper(n, 1);
+    }
+  }
 
-//   }
+  public double sqrtHelper(double n, double guess){
+    if (Math.abs((guess*guess - n)/n) < .01){
+      return guess;
+    } else {
+      return sqrtHelper(n, (n / guess + guess) / 2);
+    }
+  }
 }
