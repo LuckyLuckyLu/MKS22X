@@ -42,10 +42,28 @@ public class Recursion{
   }
 
   public double sqrtHelper(double n, double guess){
-    if (Math.abs((guess*guess - n)/n) < .01){
+    if (Math.abs((guess*guess - n)/n) < .00001){
       return guess;
     } else {
       return sqrtHelper(n, (n / guess + guess) / 2);
+    }
+  }
+
+  public boolean isPossibleSum(int max, int number){
+    if (max < 0){
+      throw new IllegalArgumentException();
+    } else {
+      return possiHelper(max,number,0,0);
+    }
+  }
+  public boolean possiHelper(int max, int number, int fraction, int index){
+    if (fraction == number){
+      return true;
+    } else  if(index == max) {
+      return false;
+    }
+    else {
+      return possiHelper(max, number, fraction, index+1) || possiHelper(max, number, fraction+index, index +1);
     }
   }
 }

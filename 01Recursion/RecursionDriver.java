@@ -7,8 +7,11 @@ public class RecursionDriver{
     //for (int n = 0; n < 100; n++){
     //  System.out.println(ref.fib(n));
     //}
-    for (int n = 0; n < 100; n ++){
+    for (int n = 0; n <= 100; n ++){
       System.out.println(ref.sqrt(n));
+    }
+    for (int n = 0; n < 10; n ++){
+      System.out.println(ref.isPossibleSum(n,5));
     }
   }
 }
