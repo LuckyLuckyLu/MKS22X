@@ -104,8 +104,8 @@ public class QueenBoard{
    */
   public boolean solve(){
     boolean nonZeroPresence = false;
-    for (int i = 0; i < size; i++){
-	    for (int j = 0; j < size; j++){
+    for (int i = 0; i < board.length; i++){
+	    for (int j = 0; j < board.length; j++){
         if (board[i][j] != 0){
           nonZeroPresence = true;
         }
@@ -114,13 +114,13 @@ public class QueenBoard{
     if (nonZeroPresence){
       throw new IllegalStateException();
     } else {
-      solHelper(0,0);
+      return solHelper(0,0);
     }
   }
 
   private boolean solHelper(int col, int qPlaced){
     if (col == board.length){
-      return qPlaced = board.length;
+      return qPlaced == board.length;
     } else {
       for (int x = 0; x < board.length; x++){
         if (addQueen(x,col) == true){
@@ -132,6 +132,7 @@ public class QueenBoard{
         }
       }
     }
+    return false;
   }
   
   /**
