@@ -21,22 +21,26 @@ public class QueenBoard{
     }
   }
   private void UpDiaLazer(int r, int c){
-    int j = c+1;
-    for (int i = r-1; i >= 0; i--){
-      board[i][j] += 1;
-      j += 1;
+    int col = c+1;
+    for (int row = r-1; row >= 0; row--){
+      if (col < board.length){
+        board[row][col] += 1;
+        col += 1;
+      }
     }
   }
   private void DownDiaLazer(int r, int c){
-    int j = c+1;
-    for (int i = r+1; i < board.length; i++){
-	    board[j][i] += 1;
-      j += 1;
+    int col = c+1;
+    for (int row = r+1; row < board.length; row++){
+      if (col < board.length){
+        board[row][col] += 1;
+        col += 1;
+      }
     }
   }
   private void StraightLazer(int r, int c){
-    for (int i = c+1; i < board.length; i++){
-	    board[r][i] += 1;
+    for (int col = c+1; col < board.length; col++){
+	    board[r][col] += 1;
     }
   }
   private boolean rmQueen(int r, int c){
@@ -51,22 +55,26 @@ public class QueenBoard{
     }
   }
   private void AntiUpDiaLazer(int r, int c){
-    int j = c+1;
-    for (int i = r-1; i >= 0; i--){
-      board[i][j] -= 1;
-      j += 1;
+    int col  = c+1;
+    for (int row = r-1; row >= 0; row--){
+      if (col < board.length){
+        board[row][col] -= 1;
+        col += 1;
+      }
     }
   }
   private void AntiDownDiaLazer(int r, int c){
-    int j = c+1;
-    for (int i = r+1; i < board.length; i++){
-	    board[j][i] -= 1;
-      j += 1;
+    int col = c+1;
+    for (int row = r+1; row < board.length; row++){
+	    if (col < board.length){
+        board[row][col] -= 1;
+        col += 1;
+      }
     }
   }
   private void AntiStraightLazer(int r, int c){
-    for (int i = c+1; i < board.length; i++){
-	    board[r][i] -= 1;
+    for (int col = c+1; col < board.length; col++){
+	    board[r][col] -= 1;
     }
   }
   /**
@@ -82,12 +90,12 @@ public class QueenBoard{
     String result = "";
     for (int i = 0; i < board.length; i++){
 	    for (int j = 0; j < board.length; j++){
-        result += board[i][j];
-        // if (board[i][j] == -1){
-        //   result += "Q ";
-        // } else {
-        //   result += "_ ";
-        // }
+        //result += board[i][j];
+        if (board[i][j] == -1){
+          result += "Q ";
+        } else {
+          result += "_ ";
+        }
 	    }
 	    result += "\n";
     }
@@ -143,9 +151,12 @@ public class QueenBoard{
     
   public static void main(String[] args){
     QueenBoard x = new QueenBoard(10);
-    x.addQueen(1,1);
+    //x.addQueen(5,8);
     System.out.println(x);
-    x.rmQueen(1,1);
+    //x.rmQueen(1,1);
+    //System.out.println(x.addQueen(9,8));
+    //System.out.println(x);
+    x.solve();
     System.out.println(x);
   }
 }
