@@ -131,8 +131,8 @@ public class QueenBoard{
       return qPlaced == board.length;
     } else {
       for (int x = 0; x < board.length; x++){
-        if (addQueen(x,col) == true){
-          if (solHelper(col+1, qPlaced+1) == true){
+        if (addQueen(x,col)){
+          if (solHelper(col+1, qPlaced+1)){
             return true;
           } else {
             rmQueen(x,col);
@@ -167,7 +167,7 @@ public class QueenBoard{
     int solutions = 0;
     if (col ==  board.length && board.length == qPlaced){
       return 1;
-    } else if (col == board.length && board.length != qPlaced){
+    } else if (col == board.length && board.length == qPlaced){
       return 0;
     }
     for (int x = 0; x < board.length; x++){
