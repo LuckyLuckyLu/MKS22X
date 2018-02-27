@@ -96,19 +96,27 @@ public class Maze{
 
     */
     public int solve(){
-	//find the location of the S. 
+	int startRow = 0;
+	int startCol = 0;
+	int endRow = 0;
+	int endCol = 0;
+	//find the location of the S.
 	for (int i = 0; i < rows; i++){
 	    for (int j = 0; j < cols; j++){
 		if (maze[i][j] == 'S'){
 		    //erase the S
   		    maze[i][j] = '@';
-		    //return solve(???,???);
-		    return solve(i,j);
-		    //and start solving at the location of the s.
+		    startRow = i;
+		    startCol = j;
+  		    //and start solving at the location of the s.
+		}
+		if (maze[i][j] = 'E'){
+		    endRow = i;
+		    endCol = j;
 		}
 	    }
 	}
-	return 0;
+	return solve(startRow,startCol,endRow,endCol);
     }
 
     /*
@@ -129,7 +137,7 @@ public class Maze{
       Note: This is not required based on the algorithm, it is just nice visually to see.
       All visited spots that are part of the solution are changed to '@'
     */
-    private int solve(int row, int col){ //you can add more parameters since this is private
+    private int solve(int row, int col, int endRow, int endCol){ //you can add more parameters since this is private
         //automatic animation! You are welcome.
         if(animate){
             clearTerminal();
@@ -138,6 +146,18 @@ public class Maze{
         }
 
         //COMPLETE SOLVE
+	if (row == endRow && col == endCol){
+	    int counter = 0;
+	    for (int i = 0; i < rows; i++){
+		for (int j = 0; j < cols; j++){
+		    if (maze[i][j] == '@'){
+			counter ++;
+		    }
+		}
+	    }
+	}
+	int[][] moveSet = {{0,1},{1,0},{0,-1},{-1,0}};
+	
 
         return -1; //so it compiles
     }
