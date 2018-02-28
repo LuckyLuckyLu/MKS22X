@@ -16,40 +16,47 @@ public class Maze{
       'S' - the location of the start(exactly 1 per file)
 
       2. The maze has a border of '#' around the edges. So you don't have to check for out of bounds!
-
-
-      3. When the file is not found OR the file is invalid (not exactly 1 E and 1 S) then: print a meaningful error and exit the program.
-
+      
+      3. When the file is not found OR the file is invalid (not exactly 1 E and 1 S) then: 
+      throw a FileNotFoundException or IllegalStateException
     */
 
-    public Maze(String fileName){
+    public Maze(String fileName) throws FileNotFoundException(){
 	String contents = "";
         cols = 0;
         rows = 0;
-	try{
-	    File file = new File(fileName);
-	    Scanner in = new Scanner(file);	    
-	    while(in.hasNextLine()){
-		String line = in.nextLine();
-		cols = line.length();
-		rows += 1;
-		contents += line;
-	    }
-	}catch(FileNotFoundException e){
-	    System.out.println("File not found: " + fileName);
-	    System.exit(1);
+	
+	File file = new File(fileName);
+	Scanner in = new Scanner(file);	    
+	while(in.hasNextLine()){
+	    String line = in.nextLine();
+	    cols = line.length();
+	    rows += 1;
+	    contents += line;
+	    //System.out.println(contents.length());
 	}
-	//System.out.println(contents.length());
 	int index = 0;
+	int sTimes = 0;
+	int eTimes = 0;
 	maze = new char[rows][cols];
 	for (int i = 0; i < rows; i++){
 	    for (int j = 0; j < cols; j++){
+		if (contents.charAt(index) == 'S'){
+		    sTimes += 1;
+		}
+		if (contents.charAt(index) == 'E'){
+		    eTimes += 1;
+		}
 		maze[i][j] = contents.charAt(index);
 		index += 1;
 	    }
 	}
+	if (eTimes != 1 || sTimes != 1){
+	    throw new IllegalStateException();
+	}
     }
-
+    
+    
     public String toString(){
 	String result = "";
 	for (int i = 0; i < rows; i++){
@@ -60,6 +67,7 @@ public class Maze{
 	}
 	return result;
     }
+    
     
     
 
@@ -74,16 +82,16 @@ public class Maze{
 
     public void setAnimate(boolean b){
 
-        animate = b;
+	animate = b;
 
     }
 
 
     public void clearTerminal(){
 
-        //erase terminal, go to top left of screen.
+	//erase terminal, go to top left of screen.
 
-        System.out.println("\033[2J\033[1;1H");
+	System.out.println("\033[2J\033[1;1H");
 
     }
 
@@ -105,10 +113,10 @@ public class Maze{
 	    for (int j = 0; j < cols; j++){
 		if (maze[i][j] == 'S'){
 		    //erase the S
-  		    maze[i][j] = '@';
+		    maze[i][j] = '@';
 		    startRow = i;
 		    startCol = j;
-  		    //and start solving at the location of the s.
+		    //and start solving at the location of the s.
 		}
 		if (maze[i][j] = 'E'){
 		    endRow = i;
@@ -138,15 +146,15 @@ public class Maze{
       All visited spots that are part of the solution are changed to '@'
     */
     private int solve(int row, int col, int endRow, int endCol){ //you can add more parameters since this is private
-        //automatic animation! You are welcome.
-        if(animate){
-            clearTerminal();
-            System.out.println(this);
-            wait(20);
-        }
+	//automatic animation! You are welcome.
+	if(animate){
+	    clearTerminal();
+	    System.out.println(this);
+	    wait(20);
+	}
 
-        //COMPLETE SOLVE
-	if (row == endRow && col == endCol){
+	//COMPLETE SOLVE
+	if (row == endRow && col == endCol){	    
 	    int counter = 0;
 	    for (int i = 0; i < rows; i++){
 		for (int j = 0; j < cols; j++){
@@ -155,12 +163,17 @@ public class Maze{
 		    }
 		}
 	    }
+	    return counter;
 	}
 	int[][] moveSet = {{0,1},{1,0},{0,-1},{-1,0}};
-	
+	for (int i = 0; i < moveSet.length(); i++){
+	    int newRow = row + moveSet[x][0];
+	    int newCol = col + moveSet[x][1];
+	    if (
+		}
 
-        return -1; //so it compiles
+	    return -1; //so it compiles
+	}
+
+
     }
-
-
-}
