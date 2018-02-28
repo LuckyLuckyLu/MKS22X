@@ -169,11 +169,15 @@ public class Maze{
 	for (int i = 0; i < moveSet.length(); i++){
 	    int newRow = row + moveSet[x][0];
 	    int newCol = col + moveSet[x][1];
-	    if (
-		}
-
-	    return -1; //so it compiles
+	    if (maze[newRow][newCol] == ' '){
+		maze[newRow][newCol] = '@';
+		return solve(newRow,newCol,endRow,endCol);
+	    }
 	}
-
-
+	
+	return -1; //so it compiles
     }
+
+    
+}
+
