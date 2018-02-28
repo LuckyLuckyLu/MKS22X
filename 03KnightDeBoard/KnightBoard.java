@@ -6,15 +6,6 @@ public class KnightBoard{
 	    throw new IllegalArgumentException();
 	}
 	board = new int[row][col];
-	/*
-	//int x = 0;
-	for (int i = 0; i < row; i++){
-	for (int j = 0; j < col; j++){
-	board[i][j] = x;
-	//	x += 1;
-	}
-	}
-	*/
     }
 
     public String toString(){
@@ -157,19 +148,7 @@ public class KnightBoard{
     }
 
     public static void main(String[] Args){
-	KnightBoard y = new KnightBoard(0,0);
-	/*System.out.println(y);
-	  System.out.println(y.moveKnight(5,5,1));
-	  System.out.println(y);
-	  System.out.println(y.moveKnight(9,5,1));
-	  System.out.println(y);
-	  System.out.println(y.moveKnight(5,9,1));
-	  System.out.println(y);
-	  System.out.println(y.moveKnight(20,5,1));
-	  System.out.println(y);
-	  System.out.println(y.moveKnight(5,20,1));
-	  System.out.println(y);*/
-
+	//KnightBoard y = new KnightBoard(0,0);
 	KnightBoard z = new KnightBoard(5,5);
 	System.out.println(z);
 	System.out.println(z.solve(0,0));
