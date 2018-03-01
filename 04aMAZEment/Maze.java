@@ -21,11 +21,12 @@ public class Maze{
       throw a FileNotFoundException or IllegalStateException
     */
 
-    public Maze(String fileName) throws FileNotFoundException(){
+    public Maze(String fileName) throws FileNotFoundException{
 	String contents = "";
         cols = 0;
         rows = 0;
-	
+
+	if(
 	File file = new File(fileName);
 	Scanner in = new Scanner(file);	    
 	while(in.hasNextLine()){
@@ -118,7 +119,7 @@ public class Maze{
 		    startCol = j;
 		    //and start solving at the location of the s.
 		}
-		if (maze[i][j] = 'E'){
+		if (maze[i][j] == 'E'){
 		    endRow = i;
 		    endCol = j;
 		}
@@ -166,12 +167,16 @@ public class Maze{
 	    return counter;
 	}
 	int[][] moveSet = {{0,1},{1,0},{0,-1},{-1,0}};
-	for (int i = 0; i < moveSet.length(); i++){
-	    int newRow = row + moveSet[x][0];
-	    int newCol = col + moveSet[x][1];
+	for (int i = 0; i < moveSet.length; i++){
+	    int newRow = row + moveSet[i][0];
+	    int newCol = col + moveSet[i][1];
 	    if (maze[newRow][newCol] == ' '){
 		maze[newRow][newCol] = '@';
-		return solve(newRow,newCol,endRow,endCol);
+		if (solve(newRow,newCol,endRow,endCol) != -1){
+		    
+		} else {
+		    maze[newRow][newCol] = '.';
+		}
 	    }
 	}
 	
