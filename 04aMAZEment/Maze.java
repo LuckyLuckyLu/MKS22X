@@ -26,7 +26,7 @@ public class Maze{
         cols = 0;
         rows = 0;
 
-	if(
+	
 	File file = new File(fileName);
 	Scanner in = new Scanner(file);	    
 	while(in.hasNextLine()){
@@ -154,29 +154,23 @@ public class Maze{
 	    wait(20);
 	}
 
-	//COMPLETE SOLVE
-	if (row == endRow && col == endCol){	    
-	    int counter = 0;
-	    for (int i = 0; i < rows; i++){
-		for (int j = 0; j < cols; j++){
-		    if (maze[i][j] == '@'){
-			counter ++;
-		    }
-		}
-	    }
-	    return counter;
-	}
+	//COMPLETE
+	int counter = 0;
 	int[][] moveSet = {{0,1},{1,0},{0,-1},{-1,0}};
 	for (int i = 0; i < moveSet.length; i++){
 	    int newRow = row + moveSet[i][0];
 	    int newCol = col + moveSet[i][1];
 	    if (maze[newRow][newCol] == ' '){
 		maze[newRow][newCol] = '@';
-		if (solve(newRow,newCol,endRow,endCol) != -1){
-		    
+		counter += 1;
+		if (solve(newRow,newCol,endRow,endCol) == -1){
+		    return -1;
 		} else {
 		    maze[newRow][newCol] = '.';
+		    counter -= 1;
 		}
+	    } else if (maze[newRow][newCol] == '@'){
+		return counter;
 	    }
 	}
 	

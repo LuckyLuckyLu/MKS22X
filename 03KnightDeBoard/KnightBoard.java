@@ -149,11 +149,11 @@ public class KnightBoard{
 
     public static void main(String[] Args){
 	//KnightBoard y = new KnightBoard(0,0);
-	KnightBoard z = new KnightBoard(5,5);
+	KnightBoard z = new KnightBoard(4,5);
 	System.out.println(z);
 	System.out.println(z.solve(0,0));
 	System.out.println(z);
-	KnightBoard x = new KnightBoard(5,5);
+	KnightBoard x = new KnightBoard(4,5);
 	System.out.println(x);
 	System.out.println(x.countSolutions(0,0));
 	System.out.println(x);

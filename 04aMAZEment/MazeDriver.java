@@ -1,3 +1,4 @@
+import java.io.*; //file, filenotfoundexception
 public class MazeDriver{
 
     public static void main(String[]args){
@@ -5,7 +6,7 @@ public class MazeDriver{
 	    Maze f;
 	    f = new Maze("data1.dat");//true animates the maze.
 	    
-	    //f.setAnimate(true);
+	    f.setAnimate(true);
 	    f.solve();
 
 	    System.out.println(f);
