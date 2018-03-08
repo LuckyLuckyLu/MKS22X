@@ -153,10 +153,8 @@ public class Maze{
       if (maze[newRow][newCol] == ' ' || maze[newRow][newCol] == 'E'){
         if (maze[newRow][newCol] == ' '){
          maze[newRow][newCol] = '@';
-        } else {
-          return counter;
+         counter += 1;
         }
-        counter += 1;
         if (solve(newRow,newCol,endRow,endCol,counter) != -1){
           return solve(newRow,newCol,endRow,endCol,counter);
         }
