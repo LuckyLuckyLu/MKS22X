@@ -139,7 +139,7 @@ public class KnightBoard{
           newCol >= board[0].length ||
           newCol < 0){
 	    } else {
-        board[row][col] = level;
+       board[row][col] = level;
         solutions += countHelp(newRow,newCol,level+1);
         board[row][col] = 0;
 	    }
