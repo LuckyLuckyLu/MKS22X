@@ -34,6 +34,6 @@ public class USACO{
 	    throw FileNotFoundException;
     }
 
-	}
+  }
 }
-}
+

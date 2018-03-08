@@ -126,7 +126,7 @@ public class KnightBoard{
 	    //System.out.println(board[row][col]);
 	    return 0;
     }
-    if (level == 25){//board.length * board[0].length){
+    if (level == board.length * board[0].length){
 	    //board[row][col] = level;
 	    return 1;
     }
