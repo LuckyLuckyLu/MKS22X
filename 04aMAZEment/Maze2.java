@@ -1,13 +1,13 @@
 import java.util.*;
 import java.io.*;
-public class Maze{
+public class Maze2{
 
 
   private char[][]maze;
   private boolean animate;
   private int rows, cols; 
 
-  public Maze(String fileName) throws FileNotFoundException{
+  public Maze2(String fileName) throws FileNotFoundException{
     String contents = "";
     cols = 0;
     rows = 0;
@@ -104,7 +104,7 @@ public class Maze{
         }
 	    }
     }
-    solve(startRow,startCol);
+    solve(startRow,startCol,0);
     return AtCounter();
   }
 
@@ -126,7 +126,7 @@ public class Maze{
     Note: This is not required based on the algorithm, it is just nice visually to see.
     All visited spots that are part of the solution are changed to '@'
   */
-  private int solve(int row, int col){ 
+  private int solve(int row, int col, int count){ 
     //System.out.println(row);
     //System.out.println(col);
     if(animate){
@@ -140,15 +140,15 @@ public class Maze{
 	    int newRow = row + moveSet[dir][0];
 	    int newCol = col + moveSet[dir][1];
 	    if (maze[newRow][newCol] == 'E'){
-        return 1;
+        return count;
 	    }
 	    if (maze[newRow][newCol] == ' '){
-        maze[newRow][newCol] = '@';
-        int ATNumber = solve(newRow,newCol);
-        if (ATNumber > 0){
-          return ATNumber + 1;
-        }
         maze[newRow][newCol] = '.';
+        if (solve(newRow,newCol,(count+1)) > 0){
+        }
+        else {
+          maze[newRow][newCol] = '.';
+        }
       }
     }
     return -1;
@@ -163,6 +163,9 @@ public class Maze{
 	    }
     }
     Counter -= 1;
+    if (Counter == 0){
+      return -1;
+    }
     return Counter;
   }
 }

@@ -3,8 +3,8 @@ public class MazeDriver{
 
   public static void main(String[]args){
     try{
-	    Maze f;
-	    f = new Maze("data1.dat");//true animates the maze.
+	    Maze2 f;
+	    f = new Maze2("data2.dat");//true animates the maze.
 	    
 	    f.setAnimate(true);
 	    System.out.println(f.solve());
