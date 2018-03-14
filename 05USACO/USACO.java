@@ -8,7 +8,7 @@ public class USACO{
     public USACO(){
        
     }
-    public static int bronze(String filename){
+    public static int bronze(int[][] map){//String filename){
 	//fileReader(filename);
 	return 0;
     }
@@ -42,6 +42,57 @@ public class USACO{
 	}
 	return result;
     }
+
+    public void reduce3by3(int row, int col, int increment){
+	int[][] blocks = {{-1,-1},
+			  {1,1},
+			  {1,-1},
+			  {-1,1},
+			  {0,-1},
+			  {-1,0},
+			  {1,0},
+			  {0,1},
+			  {0,0}};
+	// for (int i = 0; i < blocks.length; i++){
+	//     int newRow = row+blocks[i][0];
+	//     int newCol = col+blocks[i][1];
+	//     if (newRow < map.length &&
+	// 	newCol < map[0].length &&
+	// 	newRow >= 0 &&
+	// 	newCol >= 0){
+	// 	map[newRow][newCol] = 0;
+	//     }
+	// }
+	
+	int maxValue = map[row][col];
+	for (int i = 0; i < blocks.length; i++){
+	    int newRow = row+blocks[i][0];
+	    int newCol = col+blocks[i][1];
+	    if (newRow < map.length &&
+		newCol < map[0].length &&
+		newRow >= 0 &&
+		newCol >= 0){
+		int block = map[newRow][newCol];
+		if (maxValue < block){
+		    maxValue = block;
+		}
+	    }
+	}
+	int change = maxValue - increment;
+	for (int i = 0; i < blocks.length; i++){
+	    int newRow = row+blocks[i][0];
+	    int newCol = col+blocks[i][1];
+	    if (newRow < map.length &&
+		newCol < map[0].length &&
+		newRow >= 0 &&
+		newCol >= 0){
+		int block = map[newRow][newCol];
+		if (change < block){
+		    map[newRow][newCol] = change;
+		}
+	    }
+	}
+    }
   
     public static String fileReader(String filename){
 	try{
@@ -50,7 +101,7 @@ public class USACO{
 	    while(in.hasNextLine()){
 		String newLine = in.nextLine();
 	
-    	    }
+	    }
 	}
   
 	catch(FileNotFoundException e){
@@ -60,6 +111,8 @@ public class USACO{
     }
     public static void main(String[] Args){
 	USACO thing = new USACO();
+	System.out.println(thing);
+	thing.reduce3by3(2,2,6);
 	System.out.println(thing);
     }
 }
