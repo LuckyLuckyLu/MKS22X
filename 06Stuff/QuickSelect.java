@@ -1,19 +1,23 @@
 public class QuickSelect{
     private int[] Array;
-    public QuickSelect(int[] Array){
-        this.Array= Array;
+    public QuickSelect(int[] newArray){
+        Array= newArray;
     }
     public void Swap(int x, int y){
 	int ValueHolder  = Array[x];
 	Array[x] = Array[y];
 	Array[y] = ValueHolder;
     }
-    public void Partition(){
+    public void Partition(int index){
 	int front = 0;
-	int end = this.getArray().length - 1;
-	int middle = this.getArray().length / 2;
-	for (int x = 0; x < Array.length; x++){
-	    if (Array[front] > Array[middle]){
+	Swap(front,index);
+	int first = front;
+	front++;
+	System.out.println(Array.length);
+	int end = Array.length - 1;
+	System.out.println(end);
+	while(front <= end){
+	    if (Array[front] > Array[]){
 		Swap(front,end);
 		end --;
 	    } else{
