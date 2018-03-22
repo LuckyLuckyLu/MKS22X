@@ -18,7 +18,7 @@ public class Quick{
     public static int partition(int[] data, int start, int end){
 	Random index = new Random();
 	int v = index.nextInt(end) + start;
-	System.out.println(v);
+	//System.out.println(v);
 	Swap(data,v,start);
 	int front = start + 1;
 	int ending = end;
@@ -48,7 +48,7 @@ public class Quick{
 	
     }
     public static boolean sorted(int[] ary, int start, int end){
-	for (int x = start; x < end - 1; x++){
+	for (int x = start; x < end; x++){
 	    if (ary[x] > ary[x+1]){
 		return false;
 	    }
@@ -90,12 +90,12 @@ public class Quick{
     // 	return result;
     // }
     public static void main(String[] Arg){
-	int[] x = {1,4,6,7,9,3,2};
+	int[] x = {1,4,6,7,9,3,2,3,56,7,5,9,0,3,6,8,5,3,5,6};
 	Quick bob = new Quick();
-	while(!sorted(x)){
-	    bob.partition(x,0,6);
+	while(!sorted(x,0,19)){
+	    bob.partition(x,0,19);
 	    //System.out.println(bob.partition(x,0,6));//tArray());//.toString());
-	    System.out.println(toString(x));
+	    //System.out.println(toString(x));
 	}
 	System.out.println(toString(x));
 	
