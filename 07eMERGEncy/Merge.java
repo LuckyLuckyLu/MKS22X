@@ -1,14 +1,17 @@
 public class Merge{
-  // public static void mergesort(int[] data){
-  // 	if (data.length <= 1){
+  public static void mergesort(int[] data){
+  	if (data.length <= 1){
 	    
-  // 	} else {
-  // 	    int lo = 0;
-  // 	    int hi = data.length;
-  // 	    int mi = lo/2 + hi/2;
-  // 	    int[] temp = data.length/2;
+  	} else {
+  	    int lo = 0;
+  	    int hi = data.length;
+  	    int mi = lo/2 + hi/2;
+  	    int[] tempfront = new int[data.length/2];
+	    int[] tempback = new int[data.length - data.length/2];
+	    
+	    
 	
-  // }
+  }
 
   public static int[]  merge(int[] data, int[] temp){//, int lo, int mi, int hi){
     int[] total = new int[data.length+temp.length];

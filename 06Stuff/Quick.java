@@ -22,7 +22,7 @@ public class Quick{
 	Swap(data,v,start);
 	int front = start + 1;
 	int ending = end;
-	System.out.println(toString(data));
+	//System.out.println(toString(data));
 	//System.out.println(Array.length);
 	while(front <= ending){
 	    if (data[front] > data[ending]){
@@ -33,7 +33,7 @@ public class Quick{
 	    }
 	}
 	Swap(data,ending,start);
-	System.out.println(toString(data));
+	//System.out.println(toString(data));
 
 	int i = 0;
 	for (int x = 0; x < data.length; x++){
@@ -46,6 +46,14 @@ public class Quick{
     }
     public static void quicksort(int[]ary){
 	
+    }
+    public static boolean sorted(int[] ary, int start, int end){
+	for (int x = start; x < end - 1; x++){
+	    if (ary[x] > ary[x+1]){
+		return false;
+	    }
+	}
+	return true;
     }
     public static String toString(int[] arr){
 	String result = "";
@@ -84,6 +92,12 @@ public class Quick{
     public static void main(String[] Arg){
 	int[] x = {1,4,6,7,9,3,2};
 	Quick bob = new Quick();
-	System.out.println(bob.partition(x,0,6));//tArray());//.toString());
+	while(!sorted(x)){
+	    bob.partition(x,0,6);
+	    //System.out.println(bob.partition(x,0,6));//tArray());//.toString());
+	    System.out.println(toString(x));
+	}
+	System.out.println(toString(x));
+	
     }
 }
