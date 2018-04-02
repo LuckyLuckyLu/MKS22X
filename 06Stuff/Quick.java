@@ -1,4 +1,3 @@
-import java.util.Random;
 public class Quick{
   //private int[] Array;    
   public static void Swap(int[] box, int x, int y){
@@ -19,8 +18,7 @@ public class Quick{
     if (data.length < 2){
       return start;
     }
-    Random index = new Random();
-    int v = index.nextInt(end) + start;;
+    int v = (int)(Math.random() * ((end-start) + 1) + start);//index.nextInt(end) + start;;
     int Vvalue = data[v];
     Swap(data,v,start);
     int front = start + 1;
@@ -41,11 +39,61 @@ public class Quick{
     }
     return 0;
   }
+    public static int partitionV2(int[] data, int start, int end){
+    if (data.length < 2){
+      return start;
+    }
+    int v = (int)(Math.random() * ((end-start) + 1) + start);//index.nextInt(end) + start;;
+    int Vvalue = data[v];
+    Swap(data,v,start);
+    int front = start+1;
+    int index = start;
+    int beginning = start;
+    int ending = end;
+    while(front <= ending){
+      if (data[front] == Vvalue){
+        Swap(data,front,index);
+        index++;
+      } else if (data[front] > Vvalue){
+        Swap(data,front,ending);
+        ending--;
+      } else if (data[front] < Vvalue){
+        front++;
+      }
+      /*
+      if (data[index] > Vvalue){
+        Swap(data,index,ending);
+        ending --;
+      } else if (data[index] < Vvalue){
+        Swap(data,index,front);
+        front++;
+        index++;
+      } else{
+        index ++;
+      }
+      */
+    }
+    while(index > start){
+      Swap(data,ending,beginning);
+      beginning++;
+      ending--;
+      index--; 
+    }
+    //Swap(data,ending,start);
+    /*for (int x = 0; x < data.length; x++){
+      if (data[x] == Vvalue){
+        return x;
+      }
+    }
+    */
+    return v;
+  }
+  
   public static int quickSelect(int[]ary, int index){
     return quickSelectHelper(ary,index,0,ary.length-1);
       }
   private static int quickSelectHelper(int[] Array, int index, int start, int end){
-    int initial = partition(Array, start, end);
+    int initial = partitionV2(Array, start, end);
     if (initial == index){
       return Array[initial]; 
     } else if (initial >= index){

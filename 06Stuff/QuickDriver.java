@@ -11,7 +11,7 @@ public class QuickDriver{
 
     toString(tests);
 
-    int ans = Quick.partition(tests, 0, tests.length - 1);
+    int ans = Quick.partitionV2(tests, 0, tests.length - 1);
     System.out.println("Pivot: " + tests[ans] + " Index: " + ans);
     System.out.println("Pivot correct? " + checkPivot(tests, ans));
     toString(tests);
@@ -43,7 +43,8 @@ public class QuickDriver{
     toString(testx);
     System.out.println("DONE!\n");
 
-    int[] test = {1000, 999,999,999,4,1,0,3,2,999,999,100,100,-10000, 10212, -19212, 23, 12};
+    int[] test = {2,1,4,6,8,0,-1,-2,7,9};//
+    //int[] test = {1000, 999,999,999,4,1,0,3,2,999,999,100,100,-10000, 10212, -19212, 23, 12};
     toString(test);
     ////SHOULD PRINT THE ARRAY IN ORDER FROM LEAST TO GREATEST
     System.out.println("\nPRINTING LEAST TO GREATEST");
