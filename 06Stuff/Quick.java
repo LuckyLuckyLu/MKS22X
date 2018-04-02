@@ -22,16 +22,16 @@ public class Quick{
     int Vvalue = data[v];
     Swap(data,v,start);
     int front = start + 1;
-    int ending = end;
-    while(front <= ending){
+    int back = end;
+    while(front <= back){
       if (data[front] > Vvalue){
-        Swap(data,front,ending);
-        ending --;
+        Swap(data,front,back);
+        back --;
       } else{
         front ++;
       }
     }
-    Swap(data,ending,start);
+    Swap(data,back,start);
     for (int x = 0; x < data.length; x++){
       if (data[x] == Vvalue){
         return x;
@@ -43,49 +43,50 @@ public class Quick{
     if (data.length < 2){
       return start;
     }
-    int v = (int)(Math.random() * ((end-start) + 1) + start);//index.nextInt(end) + start;;
+    int v = (int)(Math.random() * ((end-start) + 1) + start);//counter.nextInt(end) + start;;
     int Vvalue = data[v];
     Swap(data,v,start);
     int front = start+1;
-    int index = start;
-    int beginning = start;
-    int ending = end;
-    while(front <= ending){
+    int counter = start;
+    int back = end;
+    while(front <= back){
       if (data[front] == Vvalue){
-        Swap(data,front,index);
-        index++;
+        counter++;
+        Swap(data,front,counter);
       } else if (data[front] > Vvalue){
-        Swap(data,front,ending);
-        ending--;
+        Swap(data,front,back);
+        back--;
       } else if (data[front] < Vvalue){
         front++;
       }
       /*
-      if (data[index] > Vvalue){
-        Swap(data,index,ending);
-        ending --;
-      } else if (data[index] < Vvalue){
-        Swap(data,index,front);
+      if (data[counter] > Vvalue){
+        Swap(data,counter,back);
+        back --;
+      } else if (data[counter] < Vvalue){
+        Swap(data,counter,front);
         front++;
-        index++;
+        counter++;
       } else{
-        index ++;
+        counter ++;
       }
       */
     }
-    while(index > start){
-      Swap(data,ending,beginning);
-      beginning++;
-      ending--;
-      index--; 
+    for (int i = start; i <= counter; i++){
+      Swap(data,i,front-i);
     }
-    //Swap(data,ending,start);
+    //Swap(data,back,start);
     /*for (int x = 0; x < data.length; x++){
       if (data[x] == Vvalue){
         return x;
       }
     }
     */
+    for (int i = start; i <= end; i++){
+      if (data[i] == Vvalue){
+        return i;
+      }
+    }
     return v;
   }
   
