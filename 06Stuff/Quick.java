@@ -39,7 +39,7 @@ public class Quick{
     }
     return 0;
   }
-    public static int partitionV2(int[] data, int start, int end){
+  public static int partitionV2(int[] data, int start, int end){
     if (data.length < 2){
       return start;
     }
@@ -60,16 +60,16 @@ public class Quick{
         front++;
       }
       /*
-      if (data[counter] > Vvalue){
+        if (data[counter] > Vvalue){
         Swap(data,counter,back);
         back --;
-      } else if (data[counter] < Vvalue){
+        } else if (data[counter] < Vvalue){
         Swap(data,counter,front);
         front++;
         counter++;
-      } else{
+        } else{
         counter ++;
-      }
+        }
       */
     }
     for (int i = start; i <= counter; i++){
@@ -78,9 +78,9 @@ public class Quick{
     //Swap(data,back,start);
     /*for (int x = 0; x < data.length; x++){
       if (data[x] == Vvalue){
-        return x;
+      return x;
       }
-    }
+      }
     */
     for (int i = start; i <= end; i++){
       if (data[i] == Vvalue){
@@ -93,7 +93,11 @@ public class Quick{
     if (data.length < 2){
       return start;
     }
+    //if (end-start<=0){
+    //  return start;
+    //}
     int v = (int)(Math.random() * ((end-start) + 1) + start);//counter.nextInt(end) + start;;
+    System.out.println("pivot = "+ v);
     int Vvalue = data[v];
     Swap(data,v,start);
     int front = start+1;
@@ -111,16 +115,16 @@ public class Quick{
         front++;
       }
       /*
-      if (data[counter] > Vvalue){
+        if (data[counter] > Vvalue){
         Swap(data,counter,back);
         back --;
-      } else if (data[counter] < Vvalue){
+        } else if (data[counter] < Vvalue){
         Swap(data,counter,front);
         front++;
         counter++;
-      } else{
+        } else{
         counter ++;
-      }
+        }
       */
     }
     for (int i = start; i <= counter; i++){
@@ -129,30 +133,40 @@ public class Quick{
     //Swap(data,back,start);
     /*for (int x = 0; x < data.length; x++){
       if (data[x] == Vvalue){
-        return x;
+      return x;
       }
-    }
+      }
     */
-    for (int i = start; i <= end; i++){
+    for (int i = start; i < end; i++){
       if (data[i] == Vvalue){
-        return i;
+        v = i;
       }
     }
+
     return v;
   }
   
   
   public static int quickSelect(int[]ary, int index){
     return quickSelectHelper(ary,index,0,ary.length-1);
-      }
+  }
   private static int quickSelectHelper(int[] Array, int index, int start, int end){
     int initial = partitionV3(Array, start, end);
+    System.out.println("initial = " + initial);
     if (initial == index){
-      return Array[initial]; 
-    } else if (initial >= index){
+      return Array[initial];
+    } else if (initial > index){
+      //if (initial >= 1){
+      // while (Array[initial] == Array[initial-1]){
+      //   initial --;
+      //   if (initial == index){
+      //     return Array[initial];
+      //   }
+      // }
       return quickSelectHelper(Array, index, start, initial);
+      //}
     } else {
-      return quickSelectHelper(Array, index, initial+1, end);
+      return quickSelectHelper(Array, index, initial, end);
     }
   }
 

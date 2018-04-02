@@ -5,9 +5,10 @@ public class QuickDriver{
     //MOST IMPORTANT TEST........PARTITION!!!
     //(This could be more extensive ..... and better .... and A LOT MORE!)
     //(My Quick.partition returns the index num of PIVOT, and is inclusive of the last num)
+    /*
     System.out.println("TESTING PARTITION");
 
-    int[] tests = {0,1,0,1,0,1,2,0,1,2,1,2,2};//{1000, 999,999,999,4,1,0,3,2,999,999,100,100,-10000, 10212, -19212, 23, 12};
+    int[] tests = {0,0,2,0,1,2,1,1,1,2,0,2,2};//{0,1,0,1,0,1,2,0,1,2,1,2,2};//{1000, 999,999,999,4,1,0,3,2,999,999,100,100,-10000, 10212, -19212, 23, 12};
 
     toString(tests);
 
@@ -42,8 +43,9 @@ public class QuickDriver{
     System.out.println("Pivot: " + testx[ans] + " Index: " + ans);
     toString(testx);
     System.out.println("DONE!\n");
+    */
 
-    int[] test = {0,1,0,1,0,1,2,0,1,2,1,2,2};//{2,1,4,6,8,0,-1,-2,7,9};//
+    int[] test = {6,5,4,3,2,1};//{0,1,0,1,0,1,2,0,1,2,1,2,2};//{2,1,4,6,8,0,-1,-2,7,9};//
     //int[] test = {1000, 999,999,999,4,1,0,3,2,999,999,100,100,-10000, 10212, -19212, 23, 12};
     toString(test);
     ////SHOULD PRINT THE ARRAY IN ORDER FROM LEAST TO GREATEST
