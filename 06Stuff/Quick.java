@@ -112,7 +112,7 @@ public class Quick{
         Swap(data,front,back);
         back--;
       } else if (data[front] < Vvalue){
-        front++;
+          front++;
       }
       /*
         if (data[counter] > Vvalue){
@@ -126,6 +126,15 @@ public class Quick{
         counter ++;
         }
       */
+    }
+    if (front > back){
+      front = back;
+    }
+    if (front > data.length){
+      front = data.length;
+    }
+    if (back == -1){
+      back = 0;
     }
     for (int i = start; i <= counter; i++){
       Swap(data,i,back-i);
@@ -148,9 +157,10 @@ public class Quick{
   
   
   public static int quickSelect(int[]ary, int index){
-    return quickSelectHelper(ary,index,0,ary.length-1);
+    return quickSelectHelper(ary,index,index,ary.length-1);
   }
   private static int quickSelectHelper(int[] Array, int index, int start, int end){
+    System.out.println(toString(Array));
     int initial = partitionV3(Array, start, end);
     System.out.println("initial = " + initial);
     if (initial == index){
@@ -171,9 +181,9 @@ public class Quick{
   }
 
   public static String toString(int[] arr){
-    String result = "";
+    String result = "                              ";
     for (int x = 0; x < arr.length; x++){
-      result += arr[x];
+      result += arr[x] + " ";
     }
     return result;
   }
