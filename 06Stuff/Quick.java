@@ -97,47 +97,46 @@ public class Quick{
     //  return start;
     //}
     int v = (int)(Math.random() * ((end-start) + 1) + start);//counter.nextInt(end) + start;;
-    System.out.println("pivot = "+ v);
+    //System.out.println("pivot = "+ v);
     int Vvalue = data[v];
     Swap(data,v,start);
+    // System.out.println("Swap to start, v= "+ v + " get "+ toString(data));
     int front = start+1;
-    int counter = start;
+    int counter = 0;
     int back = end;
+    int m = 0;
     while(front <= back){
       if (data[front] == Vvalue){
         counter++;
-        Swap(data,front,counter);
+        m = start + counter;
+        Swap(data,front,m);
         front++;
       } else if (data[front] > Vvalue){
+        //if (front < back){
         Swap(data,front,back);
+        // System.out.println(">value Swap to back- = "+ back + " get "+ toString(data));
         back--;
+        //}
       } else if (data[front] < Vvalue){
-          front++;
-      }
-      /*
-        if (data[counter] > Vvalue){
-        Swap(data,counter,back);
-        back --;
-        } else if (data[counter] < Vvalue){
-        Swap(data,counter,front);
+        //  System.out.println("<value front++ ="+ front);
         front++;
-        counter++;
-        } else{
-        counter ++;
-        }
-      */
+      }
+      // System.out.println("         New:" + toString(data));
     }
     if (front > back){
-      front = back;
+      //  front = back;
     }
     if (front > data.length){
-      front = data.length;
+      front = end;
     }
     if (back == -1){
-      back = 0;
+      back = start;
     }
-    for (int i = start; i <= counter; i++){
-      Swap(data,i,back-i);
+    for (int i = 0; i <= counter; i++){
+      // System.out.println("swap to middle, start ="+ start);
+      // System.out.println("swap to middle, back ="+ back);
+      Swap(data,start+i,back-i);
+      // System.out.println("after swap to middle, i= "+ i + " get "+ toString(data));
     }
     //Swap(data,back,start);
     /*for (int x = 0; x < data.length; x++){
@@ -146,12 +145,14 @@ public class Quick{
       }
       }
     */
-    for (int i = start; i < end; i++){
+    //v = end;
+    for (int i = start; i <= end; i++){
       if (data[i] == Vvalue){
         v = i;
       }
     }
-
+    //System.out.println("Before return V, Vvalue = "+ Vvalue + " get "+ toString(data));
+    //System.out.println("finally return V = "+ v  + " get "+ toString(data));
     return v;
   }
   
@@ -160,11 +161,11 @@ public class Quick{
     return quickSelectHelper(ary,index,index,ary.length-1);
   }
   private static int quickSelectHelper(int[] Array, int index, int start, int end){
-    System.out.println(toString(Array));
+    //System.out.println(toString(Array));
     int initial = partitionV3(Array, start, end);
-    System.out.println("initial = " + initial);
+    //System.out.println("initial = " + initial);
     if (initial == index){
-      return Array[initial];
+      return Array[index];
     } else if (initial > index){
       //if (initial >= 1){
       // while (Array[initial] == Array[initial-1]){
@@ -173,15 +174,15 @@ public class Quick{
       //     return Array[initial];
       //   }
       // }
-      return quickSelectHelper(Array, index, start, initial);
+      return quickSelectHelper(Array, index, start, initial-1);
       //}
     } else {
-      return quickSelectHelper(Array, index, initial, end);
+      return quickSelectHelper(Array, index, initial+1, end);
     }
   }
 
   public static String toString(int[] arr){
-    String result = "                              ";
+    String result = "";
     for (int x = 0; x < arr.length; x++){
       result += arr[x] + " ";
     }
