@@ -45,8 +45,8 @@ public class QuickDriver{
     System.out.println("DONE!\n");
     */
 
-    int[] test = {6,5,4,3,2,1};//{0,1,0,1,0,1,2,0,1,2,1,2,2};//{2,1,4,6,8,0,-1,-2,7,9};//
-    //int[] test = {1000, 999,999,999,4,1,0,3,2,999,999,100,100,-10000, 10212, -19212, 23, 12};
+    //int[] test = {6,5,4,3,2,1};//{0,1,0,1,0,1,2,0,1,2,1,2,2};//{2,1,4,6,8,0,-1,-2,7,9};//
+    int[] test = {1000, 999,999,999,4,1,0,3,2,999,999,100,100,-10000, 10212, -19212, 23, 12};
     toString(test);
     ////SHOULD PRINT THE ARRAY IN ORDER FROM LEAST TO GREATEST
     System.out.println("\nPRINTING LEAST TO GREATEST");
@@ -55,7 +55,7 @@ public class QuickDriver{
     }
     System.out.println("DONE!\n");
 
-    /*
+
     //Testing QuickSort
     System.out.println("TESTING QUICKSORT!");
     //General Case
@@ -74,6 +74,7 @@ public class QuickDriver{
     System.out.println("Time: " + (end-start) + "ms");
 
     //Edge Cases
+
     System.out.print("\nTESTING EDGY CASES!\n");
 
     int[] testz = {};
@@ -115,7 +116,7 @@ public class QuickDriver{
     Quick.quicksort(testd);
     toString(testd);
     System.out.println();
-    */
+
 
   }
 
