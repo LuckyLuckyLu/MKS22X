@@ -10,17 +10,17 @@ public class Merge{
     msort(data,temp,0,data.length);
   }
 
-  // public int[] mergesort(int[] data, int[] temp, int lo, int hi){
-  //  int mid=0;
-  //  //int[] STA, STB, final;
-  //  if (lo!=hi){
-  //    mid=(lo+hi)/2;
-  //    mergesort(temp, data, lo, mid);
-  //    mergesort(temp, data, mid+1,hi);
-  //  }
-  //    final = merge(STA,STB);
-  //    return final;
-  //    }
+  public int[] mergesort(int[] data, int[] temp, int lo, int hi){
+   int mid=0;
+   //int[] STA, STB, final;
+   if (lo!=hi){
+     mid=(lo+hi)/2;
+     mergesort(temp, data, lo, mid);
+     mergesort(temp, data, mid+1,hi);
+   }
+     final = merge(STA,STB);
+     return final;
+     }
   
   
   public static void msort(int[]data, int[]temp, int lo, int hi){
