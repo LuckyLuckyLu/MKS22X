@@ -1,50 +1,62 @@
-
 public class Merge{
-  public static void swap(int[] arry, int x, int y){
-    int temp = arry[x];
-    arry[x] = arry[y];
-    arry[y] = temp;
-  }
-  public static void mergesort(int[]data){ // -  sort the array from least to greatest value. This is a wrapper function that calls msort()
+  public static void main(String[] args){
+    int[] data = {3,5,9,2,4,8,1,6};
     int[] temp = new int[data.length];
-    msort(data,temp,0,data.length);
-  }
+    //int[] Final = new int[data.length+temp.length];
 
-  // public int[] mergesort(int[] data, int[] temp, int lo, int hi){
-  //  int mid=0;
-  //  //int[] STA, STB, final;
-  //  if (lo!=hi){
-  //    mid=(lo+hi)/2;
-  //    mergesort(temp, data, lo, mid);
-  //    mergesort(temp, data, mid+1,hi);
-  //  }
-  //    final = merge(STA,STB);
-  //    return final;
-  //    }
-  
-  
-  public static void msort(int[]data, int[]temp, int lo, int hi){
+    mergesort(data,temp,0,data.length-1);
     System.out.println(toString(data));
-    System.out.println(toString(temp));
-    if (hi - lo < 15){
-      insertionSort(data,lo,hi);
+  }
+  public static void mergeSort(int[] data){
+    int[] temp = new int[data.length];
+    mergesort(data,temp,0,data.length-1);
+  }
+  public static void mergesort(int[] data, int[] temp, int lo, int hi){
+    if(data.length <= 0){
       return;
     }
-    if (lo < hi){
-      for (int i = lo; i <= hi; i++){
-        temp[i] = data[i];
-      }
-      int mid = (hi+lo)/2;
-      msort(temp,data,lo,mid);
-      //System.out.println("First msort data = " + toString(data));
-      //System.out.println("temp" + toString(temp));
-      msort(temp,data,mid,hi);
-      mergeV2(data,temp,lo,mid,hi);
+    int flo=lo;
+    int fhi=lo/2+hi/2;
+    int slo=lo/2+hi/2+1; //hi-fhi;
+    int shi=hi;
+    if (flo != fhi){
+      mergesort(data, temp, flo, fhi);
+    }
+    if (slo != shi){
+      mergesort(data, temp, slo, shi);
+    }
+    merge(data,temp,flo,fhi,slo,shi);
+    for (int i=flo;i<=shi;i++){
+      data[i]=temp[i];
     }
   }
-    
 
-  public static int[]  merge(int[] data, int[] temp){//, int lo, int mi, int hi){
+  public static void merge(int[] data, int[] temp, int firstlo, int firsthi, int secondlo, int secondhi){
+    //int[] total = new int[data.length+temp.length];
+    int di = firstlo;
+    int ti = secondlo;
+    int index = firstlo;
+    while (di <= firsthi || ti <= secondhi){
+      if (di <= firsthi && ti <= secondhi){
+        if (data[di] <= data[ti]){
+          temp[index] = data[di];
+          di++;
+        } else {
+          temp[index] = data[ti];
+          ti++;
+        }
+      } else if (di <= firsthi){
+        temp[index] = data[di];
+        di++;
+      } else if (ti <= secondhi){
+        temp[index] = data[ti];
+        ti++;
+      }
+      index++;
+    }
+  }
+
+  public static int[]  mergeV1(int[] data, int[] temp){//, int lo, int mi, int hi){
     int[] total = new int[data.length+temp.length];
     int di = 0;
     int ti = 0;
@@ -67,82 +79,13 @@ public class Merge{
       }
       index++;
     }
-    data = new int[total.length];
-    // System.out.println("create new array, total.length =" + total.length + "Now data string is " + toString(data));
-    int i = 0;
-    while (i < total.length){
-      data[i] = total[i];
-      // System.out.println("copy from total to data, i =" + i + "Now data string is " + toString(data));
-      i++;
-    }
-    return data;
+    return total;
   }
-
-  public static int[]  mergeV2(int[] data, int[] temp, int lo, int mi, int hi){
-    //int[] total = new int[data.length+temp.length];
-    int di = lo;
-    int ti = mi;
-    int index = 0;
-    while (di < mi || ti <= hi){
-      if (di < mi && ti < hi){
-        if (data[di] <= data[ti]){
-          temp[index] = data[di];
-          di++;
-        } else {
-          temp[index] = data[ti];
-          ti++;
-        }
-      } else if (di < mi){
-        temp[index] = data[di];
-        di++;
-      } else if (ti <= hi){
-        temp[index] = data[ti];
-        ti++;
-      }
-      index++;
-    }
-    //data = new int[total.length];
-    // System.out.println("create new array, total.length =" + total.length + "Now data string is " + toString(data));
-    //int i = 0;
-    //while (i < total.length){
-    //  data[i] = total[i];
-    // System.out.println("copy from total to data, i =" + i + "Now data string is " + toString(data));
-    //  i++;
-    //}
-    return temp;
-  }
-  public static void insertionSort(int[] data, int lo, int hi){
-    for (int i = lo+1; i < hi; i++){
-	    int j = i;
-	    while (j > lo && data[j] < data[j-1]){
-        swap(data,j,j-1);
-        j -= 1;
-	    }
-    }
-}
-
- 
-  public static String toString(int[] outst){
+  public static String toString(int[] Arg){
     String result = "";
-    int index = 0;
-    // System.out.println("output string length = "+ outst.length);
-    while (index < outst.length){
-      result += outst[index] + " ";
-      index++;
+    for (int i = 0; i < Arg.length; i++){
+      result += Arg[i];
     }
     return result;
-  }
-  
-
-
-
-    
-  public static void main(String[] Arg){
-    int[] data = {1,2,3,4,5,6,7};
-    int[] test = {2,6,7,9,19};
-    merge(data,test);
-    System.out.println(toString(data));
-    data = merge(data,test);
-    System.out.println(toString(data));
   }
 }
