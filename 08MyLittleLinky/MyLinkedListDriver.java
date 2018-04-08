@@ -71,11 +71,13 @@ public class MyLinkedListDriver{ //From Ivan
     }
 
     System.out.println(j);
-    /*
+
     for (int k = 1; k < 6; k += 2) {
       System.out.println("Removing " + k);
       j.remove(new Integer(k));
       System.out.println(j);
+      System.out.println("size =" + j.size());
+
     }
 
     System.out.println();
@@ -101,6 +103,6 @@ public class MyLinkedListDriver{ //From Ivan
     c.remove(7);
 
     System.out.println(c);
-    */
+
   }
 }

@@ -5,13 +5,13 @@ public class MyLinkedList{
   //This method will help you write other
   //methods, it is private to protect your list
   private Node getNode(int index){
-    if (index < 0 || index > size){
+    if (index < 0 || index >= size){
       throw new IndexOutOfBoundsException();
     }
     if (index == 0){
       return start;
     }
-    if (index == size){
+    if (index == size - 1){
       return end;
     }
     Node found = start;
@@ -44,14 +44,14 @@ public class MyLinkedList{
   }
   
   public Integer get(int index){//exceptions!
-    if (index < 0 || index > size){
+    if (index < 0 || index >= size){
       throw new IndexOutOfBoundsException();
     }
     return getNode(index).getValue();
   }
   
   public Integer set(int index, Integer value){//exceptions!
-    if (index < 0 || index > size){
+    if (index < 0 || index >= size){
       throw new IndexOutOfBoundsException();
     }
     getNode(index).setDat(value);
@@ -102,14 +102,57 @@ public class MyLinkedList{
 
   //The remove methods can cause a problem, this is why we shouldn't 
   //use an int as the data, we need objects to distinguish between index and data
-  //public boolean remove(Integer value);
-  //public boolean remove(int index);//exceptions!
+  public boolean remove(Integer value){
+    int index = indexOf(value);
+    if (index == -1){
+      return false;
+    }
+    Node current = getNode(index);
+    if (index == 0){
+      Node next = current.getNext();
+      next.setPre(null);
+      start = next;
+    } else if (index == size-1){
+      Node previous = current.getPrev();
+      previous.setNex(null);
+      end = previous;
+    } else {
+      Node previous = current.getPrev();
+      Node next = current.getNext();
+      previous.setNex(next);
+      next.setPre(previous);
+    }
+    size--;
+    return true;
+  }
+  public boolean remove(int index){//exceptions!
+    if (index < 0 || index >= size){
+      throw new IndexOutOfBoundsException();
+    }
+    Node current = getNode(index);
+    if (index == 0){
+      Node next = current.getNext();
+      next.setPre(null);
+      start = next;
+    } else if (index == size-1){
+      Node previous = current.getPrev();
+      previous.setNex(null);
+      end = previous;
+    } else {
+      Node previous = current.getPrev();
+      Node next = current.getNext();
+      previous.setNex(next);
+      next.setPre(previous);
+    }
+    size--;
+    return true;
+  }
 
    class Node{
     private Node next,prev;
-    private int data;
+    private Integer data;
 
-     public Node(Node Prev, Node Next, int Data){
+     public Node(Node Prev, Node Next, Integer Data){
 	    prev = Prev;
 	    next = Next;
 	    data = Data;
