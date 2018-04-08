@@ -87,6 +87,9 @@ public class Quick{
   }
   private static int quickSelectHelper(int[] Array, int index, int start, int end){
     //System.out.println(toString(Array));
+    if (end - start < 10){
+      insertionSort(Array,start,end);
+    }
     int initial = partition(Array, start, end);
     //System.out.println("initial = " + initial);
     if (initial == index){
@@ -120,5 +123,14 @@ public class Quick{
       result += arr[x] + " ";
     }
     return result;
+  }
+  public static void insertionSort(int[] data, int lo, int hi){
+    for (int i = lo+1; i < hi; i++){
+      int j = i;
+      while (j > lo && data[j] < data[j-1]){
+        Swap(data,j,j-1);
+        j -= 1;
+      }
+    }
   }
 }
