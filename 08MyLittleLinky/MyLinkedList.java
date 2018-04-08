@@ -15,7 +15,7 @@ public class MyLinkedList{
       return end;
     }
     Node found = start;
-    for (int i = 0; i <= index; i++){
+    for (int i = 0; i < index; i++){
       found = found.getNext();
     }
     return found;
@@ -81,8 +81,7 @@ public class MyLinkedList{
     if (size == 0){
       start = NEW;
       end = NEW;
-    }
-    if (index == 0){
+    } else if (index == 0){
       start.setPre(NEW);
       NEW.setNex(start);
       start = NEW;
