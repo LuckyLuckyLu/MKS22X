@@ -61,7 +61,7 @@ public class MyLinkedList{
   public int indexOf(Integer value){
     Node found = start;
     for (int i = 0; i < size; i++){
-      if ((found.getValue()) == (value)){
+      if ((found.getValue()).equals(value)){
         return i;
       }
       found = found.getNext();
@@ -164,7 +164,7 @@ public class MyLinkedList{
     public Node getPrev(){
 	    return prev;
     }
-    public int getValue(){
+    public Integer getValue(){
 	    return data;
     }
     public String toString(){

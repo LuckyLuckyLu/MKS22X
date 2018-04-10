@@ -1,4 +1,5 @@
-public class MyLinkedList{
+public class MyLinkedListImproved<T>{// implements Iterable{
+    // class MyLinkedListImproved<T extends Comparable<T>>{
   private Node start,end;
   private int size;
     
@@ -22,13 +23,14 @@ public class MyLinkedList{
   }
 
 
-  public MyLinkedList(){
+  public MyLinkedListImproved(){
     size = 0;
     start = null;
     end = null;
   }
+    
   public String toString(){
-    String result = "";
+      String result = "";
     for (int i = 0; i < size; i++){
       result += getNode(i) + " ";
     }
@@ -43,14 +45,14 @@ public class MyLinkedList{
     return size;
   }
   
-  public Integer get(int index){//exceptions!
+  public T get(int index){//exceptions!
     if (index < 0 || index >= size){
       throw new IndexOutOfBoundsException();
     }
     return getNode(index).getValue();
   }
   
-  public Integer set(int index, Integer value){//exceptions!
+  public T set(int index, T value){//exceptions!
     if (index < 0 || index >= size){
       throw new IndexOutOfBoundsException();
     }
@@ -58,10 +60,10 @@ public class MyLinkedList{
     return value;
   }
 
-  public int indexOf(Integer value){
+  public int indexOf(T value){
     Node found = start;
     for (int i = 0; i < size; i++){
-      if ((found.getValue()) == (value)){
+      if ((found.getValue()).equals(value)){
         return i;
       }
       found = found.getNext();
@@ -69,11 +71,11 @@ public class MyLinkedList{
     return -1;
   }
 
-  public boolean add(Integer newData){
+  public boolean add(T newData){
     add(size,newData);
     return true;
   }
-  public void add(int index, Integer value){//exceptions!
+  public void add(int index, T value){//exceptions!
     if (index < 0 || index > size){
       throw new IndexOutOfBoundsException();
     }
@@ -102,7 +104,7 @@ public class MyLinkedList{
 
   //The remove methods can cause a problem, this is why we shouldn't 
   //use an int as the data, we need objects to distinguish between index and data
-  public boolean remove(Integer value){
+  public boolean remove(T value){
     int index = indexOf(value);
     if (index == -1){
       return false;
@@ -150,9 +152,9 @@ public class MyLinkedList{
 
    class Node{
     private Node next,prev;
-    private Integer data;
+    private T data;
 
-     public Node(Node Prev, Node Next, Integer Data){
+       public Node(Node Prev, Node Next, T Data){
 	    prev = Prev;
 	    next = Next;
 	    data = Data;
@@ -164,13 +166,13 @@ public class MyLinkedList{
     public Node getPrev(){
 	    return prev;
     }
-    public int getValue(){
+    public T getValue(){
 	    return data;
     }
     public String toString(){
 	    return "" + data;
     }
-    public void setDat(int Data){
+    public void setDat(T Data){
 	    data = Data;
     }
     public void setPre(Node Prev){

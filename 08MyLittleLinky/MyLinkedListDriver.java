@@ -3,7 +3,7 @@ public class MyLinkedListDriver{ //From Ivan
   public static void main(String[] args){
     System.out.println();
     System.out.println("--- Get ---");
-    MyLinkedList a = new MyLinkedList();
+    MyLinkedListImproved<Integer> a = new MyLinkedListImproved<>();
     for (int x = 0; x < 10; x++) {
       Integer rando = new Integer((int) (Math.random() * 100));
       System.out.println("Random =" + rando);
