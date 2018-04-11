@@ -195,7 +195,26 @@ public class MyLinkedListImproved<T> implements Iterable<T>{
 	*/
 	
     }
-    public Iterator<T> iterator(){
-	return new IterableImprov(this);
+    public Iterable<T> iterator(){
+	return new Improv();
+    }
+    private class Improv implements Iterable<T>{
+	Node current;
+	
+	public Improv(){
+	    current = start;
+	}
+	public boolean hasNext(){
+	    if (current.getNext().getValue().equals(null)){
+		return false;
+	    } else {
+		return true;
+	    }
+	}
+	public T next(){
+	    T value = current.getValue();
+	    current = current.getNext();
+	    return value;
+	}
     }
 }
