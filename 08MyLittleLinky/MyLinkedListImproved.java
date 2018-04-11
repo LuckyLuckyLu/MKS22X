@@ -195,4 +195,7 @@ public class MyLinkedListImproved<T> implements Iterable<T>{
 	*/
 	
     }
+    public Iterator<T> iterator(){
+	return new IterableImprov(this);
+    }
 }
