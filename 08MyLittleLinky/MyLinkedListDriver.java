@@ -14,7 +14,7 @@ public class MyLinkedListDriver{ //From Ivan
 
     System.out.println(a);
 
-    for (int y = 0; y < 10; y++) {
+    for (x:a) {
       System.out.println(y + ": " + a.get(y));
     }
 
