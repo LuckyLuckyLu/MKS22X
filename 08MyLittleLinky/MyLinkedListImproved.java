@@ -260,4 +260,16 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
 	this.end = data.end;
 	data.clear();
     }
+    public class Sorts{
+	public static void radixsort(MyLinkedListImproved<T> data){
+	private MyLinkedListImproved<T> List;
+	private @suppresswarnings("unchecked") MyLinkedListImproved<T>[] data = new MyLinkedListImproved<>[10];
+	private int max = data.getNode(data.max());
+	for(int i = 1; i < max; i*10){
+	    
+	}
+	
+	
+	}
+    }
 }
