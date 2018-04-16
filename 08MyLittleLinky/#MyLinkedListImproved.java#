@@ -29,19 +29,19 @@ public class MyLinkedListImproved<T extends Comparable<T>> implements Iterable<T
     start = null;
     end = null;
   }
-  public void reverse(){
-    if (start != null){
-      for (int x = 1; x < size; x++){
-        Node here = this.getNode(x);
-        Node newPre = here.getNext();
-        here.setNex(here.getPrev());
-        here.setPre(newPre);
-      }
-      Node newStart = end;
-      end = start;
-      start = newStart;
-    }
-  }
+  // public void reverse(){
+  //   if (start != null){
+  //     for (int x = 1; x < size; x++){
+  //       Node here = this.getNode(x);
+  //       Node newPre = here.getNext();
+  //       here.setNex(here.getPrev());
+  //       here.setPre(newPre);
+  //     }
+  //     Node newStart = end;
+  //     end = start;
+  //     start = newStart;
+  //   }
+  // }
   public String toString(){
     String result = "";
     for (int i = 0; i < size; i++){
