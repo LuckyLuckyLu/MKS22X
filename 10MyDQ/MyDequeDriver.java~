@@ -1,0 +1,10 @@
+public class MyDequeDriver{
+    public static void main(String[] args){
+	MyDeque x = new MyDeque();
+	x.addFirst(5);
+	x.addLast(6);
+	
+	MyDeque y = new MyDeque(10);
+	
+    }
+}
