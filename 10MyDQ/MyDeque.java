@@ -1,96 +1,210 @@
 import java.util.NoSuchElementException;
-public class MyDeque{
-    private int size, start, end;
-    private Integer[] data;
-    public MyDeque(){
-	size = 0;
-	data = new Integer[10];
-	start = 5;
-	end = 0;
-    }
-    public MyDeque(int Size){
-	if (Size <= 0){
+import java.util.ArrayList;
+public class MyDeque<E>{
+  private int size, start, end;
+  private E[] data;
+  @SuppressWarnings("unchecked")
+  public MyDeque(){
+    size = 0;
+    data = (E[]) new Object[10];
+    start = 10;
+    end = -1;
+  }
+  @SuppressWarnings("unchecked")
+  public MyDeque(int Size){
+    if (Size <= 0){
 	    throw new IllegalArgumentException();
-	}
-	size = 0;
-	data = new Integer[Size];
-	start = Size / 2;
-	end = 0;
     }
-    public void reSize(){
-	int newLength = data.length * 2;
-	int newMiddle = data.length;
-	Integer[] newSized = new Integer[newLength];
-	for (int i = end; i <= 0; i--){
-	    newSized[i] = data[i];
-	}
-	int index = newMiddle;
-	for (int i = start; i < data.length; i++){
-	    newSized[index] = data[i];
+    size = 0;
+    data = (E[])new Object[Size];
+    start = Size;
+    end = -1;
+  }
+  @SuppressWarnings("unchecked")
+  public void reSize(){
+    int newLength = data.length * 2;
+    //int newMiddle = data.length;
+    E[] newSized = (E[])new Object[newLength];
+    int newStart = newLength;
+    int newEnd = -1;
+    //System.out.println(newMiddle);
+    
+    for (int i = end; i >= 0; i--){
+      newSized[i] = data[i];
+      newEnd++;
+    }
+    //System.out.println(toString(newSized));
+    int index = newLength - start;
+    System.out.println(start);
+    System.out.println(data.length);
+    for (int i = start; i < data.length; i++){
+      newSized[index] = data[i];
 	    index++;
-	}
-	data = newSized;
+      newStart--;
     }
-    public void addFirst(Integer value){
-	if (value == null){
+    //System.out.println(newStart);
+    //System.out.println(newEnd);
+    //System.out.println(toString(newSized));
+    data = newSized;
+    start = newStart;
+    end = newEnd;
+  }
+  public void addFirst(E value){
+    if (value == null){
 	    throw new NullPointerException();
-	}
-	if (data[start] == null){
+    }
+    start--;
+    if (start > 0 && data[start] == null){
 	    data[start] = value;
-	    start -= 1;
 	    size++;
-	} else {
+    } else {
+      start++;
 	    reSize();
 	    addFirst(value);
-	}
-    
     }
-    public void addLast(Integer value){
-	if (value == null){
+    
+  }
+  public void addLast(E value){
+    if (value == null){
 	    throw new NullPointerException();
-	}
-	if (data[end] == null){
+    }
+    end++;
+    if (end < data.length && data[end] == null){
 	    data[end] = value;
-	    end += 1;
 	    size++;
-	} else {
+    } else {
+      end--;
 	    reSize();
 	    addLast(value);
-	}
     }
-    public Integer removeFirst(){
-	if (size == 0 || data[start] == null){
+  }
+  public E removeFirst(){
+    if (size == 0 || data[start] == null){
 	    throw new NoSuchElementException();
-	}
-	Integer value = data[start];
-	if (start == data.length - 1){
+    }
+    E value = data[start];
+    data[start] = null;
+    size--;
+    if (start == data.length-1){
 	    start = 0;
-	} else {
+    } else {
 	    start++;
-	}
-	size--;
-	return value;
     }
-    public Integer removeLast(){
-	if (size == 0 || data[start] == null){
+    return value;
+  }
+  public E removeLast(){
+    if (size == 0 || data[end] == null){
 	    throw new NoSuchElementException();
-	}
-	Integer value = data[start];
-	if (end == 0){
+    }
+    E value = data[end];
+    data[end] = null;
+    size--;
+    if (end == 0){
 	    end = data.length-1;
-	} else {
+    } else {
 	    end--;
-	}
-	size--;
-	return value;
     }
-    public String toString(){
-	String result = "";
-	for (int i = 0; i < data.length; i++){
-	    result += data[i] + " ";
-	}
-	return result;
+    return value;
+  }
+  public E getFirst(){
+    if (size == 0){
+      throw new NoSuchElementException();
     }
+    return data[start];
+  }
+  public E getLast(){
+    if (size == 0){
+      throw new NoSuchElementException();
+    }
+    return data[end];
+  }
+  public String toStringMy(){
+    //System.out.println(start);
+    //System.out.println(end);
+    String result = "";
+    for (int i = 0; i < data.length; i++){
+      result += data[i] + " ";
+      //result += data[(i+start+1) % data.length]+ " ";
+    }
+    return result;
+  }
+  public String toString(E[] Array){
+    String result = "";
+    for (int i = 0; i < Array.length; i++){
+      result += Array[i] + " ";
+    }
+    return result;
+  }
+  public String toString(){
+    System.out.println("Start = " + start);
+    System.out.println("End = " + end);
+    String ans = "[";
+    if(start < end){
+      for (int i = start; i <= end; i++){
+        ans += data[i] + " , ";
+      }
+    }
+    else{
+      for(int i = start; i < data.length; i++){
+        ans += data[i] + ", ";
+      }
+      for(int i = 0; i <= end; i++){
+        ans += data[i] + ", ";
+      }
+    }
+    ans = ans.substring(0, ans.length() - 2) + "]";
+    return ans;
+  }
+
+  public static void main(String[] args) {
+    MyDeque<String> a = new MyDeque<>(), a1 = new MyDeque<>();
+    ArrayList<String> b = new ArrayList<>();
+
+    int size = Integer.parseInt(args[0]);
+    for(int i = 0; i < size; i++){
+      int temp = (int)(Math.random() * 1000);
+      if(temp % 2 == 0){
+        a.addFirst("" + temp);
+        a1.addFirst("" + temp);
+        b.add(0, "" + temp);
+      }
+      else{
+        a.addLast("" + temp);
+        a1.addLast("" + temp);
+        b.add("" + temp);
+      }
+    }
+    System.out.println(a);
+    System.out.println(b);
+
+    int index = 0;
+    boolean hasError = false;
+    String errorEvaluation = "Errors found at these indices: ";
+    for (String x : b){
+      if (!(x.equals(a.getFirst()))){
+        System.out.println("" + a.getFirst() + "!= " + x);
+        System.out.println("The getFirst() function is incorrect at index " + index);
+        hasError = true;
+      }
+      if (!(x.equals(a.removeFirst()))){
+        System.out.println("There is an error at index " + index);
+        errorEvaluation += index + ", ";
+        hasError = true;
+      }
+      index++;
+    }
+
+
+    if(hasError){
+      errorEvaluation = errorEvaluation.substring(0, errorEvaluation.length() - 2);
+      System.out.println(errorEvaluation);
+      System.out.println("MyDeque: " + a1);
+      System.out.println("Actual Deque: " + b);
+    }
+    else{
+      System.out.println("Your deque is bug-free!");
+    }
+  }
   
 }
 //80s Synth Music

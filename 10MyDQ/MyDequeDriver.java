@@ -1,18 +1,59 @@
 public class MyDequeDriver{
-    public static void main(String[] args){
-	MyDeque x = new MyDeque();
-	x.addFirst(5);
-	x.addLast(6);
-	x.addFirst(4);
-	x.addLast(7);
-	x.addFirst(3);
-	x.addLast(8);
-	x.addFirst(2);
-	x.addLast(9);
-	x.addFirst(1);
-	x.addLast(10);
-	System.out.println(x);
-	MyDeque y = new MyDeque(100);
-	
-    }
+  public static void main(String[] args){
+    MyDeque x = new MyDeque();
+    x.addFirst(5);
+    x.addLast(6);
+    System.out.println(x.toStringMy());
+    System.out.println(x);
+    x.addFirst(4);
+    System.out.println(x.toStringMy());
+    System.out.println(x);
+    x.addLast(7);
+    x.addFirst(3);
+    x.addLast(8);
+    x.addFirst(2);
+    System.out.println(x.toStringMy());
+    System.out.println(x);
+    x.addLast(9);
+    x.addFirst(1);
+    System.out.println(x.toStringMy());
+    System.out.println(x);
+    x.addLast(10);
+    System.out.println(x.toStringMy());
+    System.out.println(x);
+    x.addFirst(0);
+    //System.out.println(x.removeLast());
+    System.out.println(x.toStringMy());
+    System.out.println(x);
+    MyDeque y = new MyDeque();
+    y.addLast("A");
+    y.addLast("B");
+    y.addLast("C");
+    y.addLast("D");
+    y.addLast("E");
+    y.addLast("F");
+    y.addLast("G");
+    y.addLast("H");
+    y.addLast("I");
+    y.addLast("J");
+    System.out.println(y.toStringMy());
+    System.out.println(y);
+    y.addLast("K");
+    y.addLast("L");
+    y.addLast("M");
+    y.addLast("N");
+    y.addLast("O");
+    y.addLast("P");
+    y.addLast("Q");
+    y.addLast("R");
+    y.addLast("S");
+    y.addLast("T");
+    y.addLast("U");
+    y.addLast("V");
+    y.addLast("W");
+    y.addLast("X");
+    y.addLast("Y");
+    y.addLast("Z");
+    System.out.println(y);
+  }
 }
