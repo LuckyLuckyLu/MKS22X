@@ -25,7 +25,7 @@ public class MyDeque<E>{
     int newLength = data.length * 2;
     //int newMiddle = data.length;
     E[] newSized = (E[])new Object[newLength];
-    int newStart = newLength;
+    int newStart = newLength-1;
     int newEnd = -1;
     //System.out.println(newMiddle);
     
@@ -34,18 +34,17 @@ public class MyDeque<E>{
       newEnd++;
     }
     //System.out.println(toString(newSized));
-    int index = newLength - start;
-    System.out.println(start);
-    System.out.println(data.length);
-    for (int i = start; i < data.length; i++){
-      newSized[index] = data[i];
-	    index++;
+    
+    //System.out.println(data.length);
+    for (int i = data.length - 1; i >= start; i--){
+      newSized[newStart] = data[i];
       newStart--;
     }
     //System.out.println(newStart);
     //System.out.println(newEnd);
     //System.out.println(toString(newSized));
     data = newSized;
+    newStart++;
     start = newStart;
     end = newEnd;
   }
@@ -118,7 +117,7 @@ public class MyDeque<E>{
     }
     return data[end];
   }
-  public String toStringMy(){
+  public String toString(){
     //System.out.println(start);
     //System.out.println(end);
     String result = "";
@@ -135,28 +134,30 @@ public class MyDeque<E>{
     }
     return result;
   }
-  public String toString(){
+  /*
+    public String toString(){ //Courtesy of Crystal
     System.out.println("Start = " + start);
     System.out.println("End = " + end);
     String ans = "[";
     if(start < end){
-      for (int i = start; i <= end; i++){
-        ans += data[i] + " , ";
-      }
+    for (int i = start; i <= end; i++){
+    ans += data[i] + " , ";
+    }
     }
     else{
-      for(int i = start; i < data.length; i++){
-        ans += data[i] + ", ";
-      }
-      for(int i = 0; i <= end; i++){
-        ans += data[i] + ", ";
-      }
+    for(int i = start; i < data.length; i++){
+    ans += data[i] + ", ";
+    }
+    for(int i = 0; i <= end; i++){
+    ans += data[i] + ", ";
+    }
     }
     ans = ans.substring(0, ans.length() - 2) + "]";
     return ans;
-  }
+    }
+  */
 
-  public static void main(String[] args) {
+  public static void main(String[] args) { //Courtesy of Crystal
     MyDeque<String> a = new MyDeque<>(), a1 = new MyDeque<>();
     ArrayList<String> b = new ArrayList<>();
 
@@ -174,6 +175,7 @@ public class MyDeque<E>{
         b.add("" + temp);
       }
     }
+    //System.out.println(toString(b));
     System.out.println(a);
     System.out.println(b);
 
