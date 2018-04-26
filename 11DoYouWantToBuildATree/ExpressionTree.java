@@ -20,9 +20,13 @@ public class ExpressionTree{
 	/*you are to write this method*/
 	String resultant = "";
 	if (isValue()){
-	    resultant += getValue();
+	    resultant += getValue() + " ";
 	} else {
-	    
+	    resultant += getLeft().toStringPostfix() + " ";
+	    resultant += getRight().toStringPostfix() + " ";
+	    resultant += getOp() + " ";
+	}
+	return resultant;
     }
   
     /*return the expression as a prefix notation string without parenthesis*/
@@ -30,7 +34,15 @@ public class ExpressionTree{
   
     public String toStringPrefix(){
 	/*you are to write this method*/
-	return "";
+	String resultant = "";
+	if (isValue()){
+	    resultant += getValue() + " ";
+	} else {
+	    resultant += getOp() + " ";
+	    resultant += getLeft().toStringPrefix() + " ";
+	    resultant += getRight().toStringPrefix() + " ";
+	}
+	return resultant;
     }
   
   
