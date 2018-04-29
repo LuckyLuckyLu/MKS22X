@@ -33,6 +33,8 @@ public class MyDeque<E>{
 	    newSized[i] = data[i];
 	    newEnd++;
     }
+    System.out.println("Resize pt 1");
+
     //System.out.println(toString(newSized));
     
     //System.out.println(data.length);
@@ -40,6 +42,8 @@ public class MyDeque<E>{
 	    newSized[newStart] = data[i];
 	    newStart--;
     }
+    System.out.println("Resize pt 2");
+
     //System.out.println(newStart);
     //System.out.println(newEnd);
     //System.out.println(toString(newSized));
@@ -47,6 +51,8 @@ public class MyDeque<E>{
     newStart++;
     start = newStart;
     end = newEnd;
+    System.out.println("yo ass just got resized");
+
   }
   public void addFirst(E value){
     if (value == null){
@@ -57,9 +63,12 @@ public class MyDeque<E>{
 	    data[start] = value;
 	    size++;
     } else {
-	    start++;
+	    //start++;
 	    reSize();
-	    addFirst(value);
+      System.out.println("Yo ass just got resized (for adding to front)");
+	    //addFirst(value);
+      data[start] = value;
+      size++;
     }
     
   }
@@ -72,9 +81,13 @@ public class MyDeque<E>{
 	    data[end] = value;
 	    size++;
     } else {
-	    end--;
+	    //end--;
 	    reSize();
-	    addLast(value);
+      System.out.println("Yo ass just got resized (adding to last)");
+
+	    //addLast(value);
+      data[end] = value;
+      size++;
     }
   }
   public E removeFirst(){
