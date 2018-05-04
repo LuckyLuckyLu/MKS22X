@@ -3,7 +3,7 @@ import java.io.*;
 public class USACO{
     //public int[][] map = {{28,25,20,32,34,36},
     //                      {27,25,20,20,30,34},
-    //                      {24,20,20,20,20,30},
+    //                     {24,20,20,20,20,30},
     //                      {20,20,14,14,20,20}};
     public static int bronze(String filename){
 	try{
@@ -145,10 +145,27 @@ public class USACO{
 	    finalRow = Integer.parseInt(instructions[2])-1;
 	    finalCol = Integer.parseInt(instructions[3])-1;
 	    pasture[initialRow][initialCol] = 1;
+	    String result = "";
+	    for (int i = 0; i < pasture.length; i++){
+		for (int j = 0; j < pasture[0].length; j++){
+		    result += pasture[i][j];
+		}
+		result += "\n";
+	    }
+	    System.out.println(result);
 	    for (int timer = 0; timer < time; timer++){
 		pasture = pastureConverter(pasture,row,col);
+		result = "";
+		for (int i = 0; i < pasture.length; i++){
+		    for (int j = 0; j < pasture[0].length; j++){
+			result += pasture[i][j];
+		    }
+		    result += "\n";
 	    }
-	    String result = "";
+	    System.out.println(result);
+
+	    }
+	    result = "";
 	    for (int i = 0; i < pasture.length; i++){
 		for (int j = 0; j < pasture[0].length; j++){
 		    result += pasture[i][j];
@@ -162,6 +179,11 @@ public class USACO{
 	    return 0;    
 	}
     }
+
+    public static int[][] pastureConverter2(int[][] pasture, int row, int col){
+	return pasture;
+    }
+    
     public static int[][] pastureConverter(int[][] pasture, int row, int col){
 	int[][] Convent = new int[row][col];
 	int[][] MoveSet = {{0,1},
@@ -178,6 +200,8 @@ public class USACO{
 			newCol >= 0 && newCol < col){
 			if (pasture[newRow][newCol] != -1){
 			    Convent[newRow][newCol] += 1;
+			} else {
+			    Convent[newRow][newCol] = -1;
 			}
 		    }
 		}
