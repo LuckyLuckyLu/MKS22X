@@ -13,6 +13,8 @@ public class FrontierQueue implements Frontier{
     public Location remove(){
 	return list.removeFirst();
     }
-    public 
+    public boolean hasNext(){
+	return null != list.peekFirst();
+    }
     
 }
