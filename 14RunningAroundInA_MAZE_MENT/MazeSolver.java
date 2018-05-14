@@ -8,7 +8,7 @@ public class MazeSolver{
 
   public MazeSolver(String fileName){
     maze = new Maze(fileName);
-    System.out.println(maze);
+    //System.out.println(maze);
 
   }
   //Default to BFS
@@ -26,7 +26,7 @@ public class MazeSolver{
     } else if (mode == 1){
       frontier = new FrontierStack();
     } else {
-      //frontier = new
+      frontier = new FrontierPriorityQueue();
     }
 
     frontier.add(maze.getStart());
@@ -52,12 +52,12 @@ public class MazeSolver{
               end = end.getPrevious();
               maze.set(end.getX(),end.getY(),'@');
             }
-            System.out.println(maze.toStringColor());
+            //System.out.println(maze.toStringColor());
             return true;
           }
         }
       }
-      System.out.println(maze.toStringColor());
+      //System.out.println(maze.toStringColor());
       if (maze.get(Spot.getX(),Spot.getY()) != 'S'){
         maze.set(Spot.getX(),Spot.getY(),'.');
       }
@@ -79,8 +79,8 @@ public class MazeSolver{
   }
 
   public static void main(String[] args){
-    MazeSolver x = new MazeSolver("data4.dat");
-    System.out.println(x.solve(1));
+    MazeSolver x = new MazeSolver("data3.dat");
+    System.out.println(x.solve(2));
     System.out.println(x);
 
 

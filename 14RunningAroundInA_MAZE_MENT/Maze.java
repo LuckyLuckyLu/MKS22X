@@ -95,7 +95,8 @@ public class Maze{
           neighborX >= 0 &&
           neighborX < maze[0].length &&
           maze[neighborX][neighborY] != '#'){
-        map[index] = new Location(neighborX,neighborY,x);
+        int distance = (Math.abs(neighborX - end.getX()) + Math.abs(neighborY - end.getY()));
+        map[index] = new Location(neighborX,neighborY,x,distance);
         index += 1;
       }
     }
