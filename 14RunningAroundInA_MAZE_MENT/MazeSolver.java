@@ -3,77 +3,86 @@ import java.io.File;
 import java.util.Scanner;
 
 public class MazeSolver{
-    private char[][] maze;
-    private boolean animate;
-    private int Srow, Scol, Erow, Ecol, rows, cols;
-    private Frontier frontier;
+  private Maze maze;
+  private Frontier frontier;
 
-    public MazeSolver(String fileName) throws FileNotFoundException{
-        String contents = "";
-        cols = 0;
-        rows = 0;
-        File file = new File(fileName);
-        Scanner in = new Scanner(file);     
-        while(in.hasNextLine()){
-            String line = in.nextLine();
-            cols = line.length();
-            rows += 1;
-            contents += line;
-        }
-        int index = 0;
-        int sTimes = 0;
-        int eTimes = 0;
-        maze = new char[rows][cols];
-        for (int i = 0; i < rows; i++){
-            for (int j = 0; j < cols; j++){
-                if (contents.charAt(index) == 'S'){
-                    sTimes += 1;
-		    Srow = rows;
-		    Scol = cols;
-                }
-                if (contents.charAt(index) == 'E'){
-                    eTimes += 1;
-		    Erow = rows;
-		    Ecol = cols;
-                }
-                maze[i][j] = contents.charAt(index);
-                index += 1;
+  public MazeSolver(String fileName){
+    maze = new Maze(fileName);
+    System.out.println(maze);
+
+  }
+  //Default to BFS
+  public boolean solve(){
+    return solve(0);
+  }
+
+  //mode: required to allow for alternate solve modes.
+  //0: BFS
+  //1: DFS
+  public boolean solve(int mode){
+    if (mode == 0){
+	    frontier = new FrontierQueue();		
+    
+    } else if (mode == 1){
+      frontier = new FrontierStack();
+    } else {
+      //frontier = new
+    }
+
+    frontier.add(maze.getStart());
+    Location end = maze.getEnd();
+
+    while (frontier.hasNext()){
+      Location Spot = frontier.next();
+      Location[] battleFrontier = maze.getNeighbors(Spot);
+      for (int i = 0; i < 4; i++){
+        Location nextSpot = battleFrontier[i];
+        if (nextSpot != null){
+          int nextX = nextSpot.getX();
+          int nextY = nextSpot.getY();
+          char nextValue = maze.get(nextX,nextY);
+          if (nextValue == ' '){
+            frontier.add(nextSpot);
+          }
+          if (nextValue == 'E'){
+            maze.set(Spot.getX(),Spot.getY(),'.');
+            maze.end = new Location(nextX,nextY,Spot);
+            end = maze.getEnd();
+            while (end.getPrevious() != null && !(end.getPrevious().equals(maze.getStart()))){
+              end = end.getPrevious();
+              maze.set(end.getX(),end.getY(),'@');
             }
+            System.out.println(maze.toStringColor());
+            return true;
+          }
         }
-        if (eTimes != 1 || sTimes != 1){
-            throw new IllegalStateException();
-        }
-    }
-    //Default to BFS
-    public boolean solve(){
-	return solve(0);
-    }
+      }
+      System.out.println(maze.toStringColor());
+      if (maze.get(Spot.getX(),Spot.getY()) != 'S'){
+        maze.set(Spot.getX(),Spot.getY(),'.');
+      }
 
-    //mode: required to allow for alternate solve modes.
-    //0: BFS
-    //1: DFS
-    public boolean solve(int mode){
-	if (mode == 0){
-	    frontier = new FrontierQueue();
-	    
-	    while(frontier.hasNext()){
-		
-	    }
-	} else if (mode == 1){
-
-	}   
+    }
 	
-	//initialize your frontier
-	//while there is stuff in the frontier:
-	//  get the next location
-	//  process the location to find the locations (use the maze to do this)
-	//  check if any locations are the end, if you found the end just return true!
-	//  add all the locations to the frontier
-	//when there are no more values in the frontier return false
-	return false;
-    }
+    //initialize your frontier
+    //while there is stuff in the frontier:
+    //  get the next location
+    //  process the location to find the locations (use the maze to do this)
+    //  check if any locations are the end, if you found the end just return true!
+    //  add all the locations to the frontier
+    //when there are no more values in the frontier return false
+    return false;
+  }
 
-    public String toString(){
-	return maze.toString();
-    }
+  public String toString(){
+    return maze.toString();
+  }
+
+  public static void main(String[] args){
+    MazeSolver x = new MazeSolver("data4.dat");
+    System.out.println(x.solve(1));
+    System.out.println(x);
+
+
+  }
 }
