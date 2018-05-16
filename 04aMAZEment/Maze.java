@@ -106,11 +106,11 @@ public class Maze{
 	}
 	int Ats = solve(startRow,startCol);
 	//System.out.println(Ats);
-	int Counter = AtCounter();
-	if (Counter == 0){
+	//int Counter = AtCounter();
+	if (Ats == 0){
 	    return -1;
 	}
-	return Counter;
+	return Ats;
     }
 
     /*
