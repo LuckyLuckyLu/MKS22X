@@ -25,5 +25,6 @@ public class eval{
   }
   public static void main(String[] args){
     System.out.println(eval("1 2 - 3 + 4 / 0.5 %"));
+    System.out.println(eval("1"));
   }
 }
