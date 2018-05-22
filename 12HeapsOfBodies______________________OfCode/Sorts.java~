@@ -1,0 +1,14 @@
+public class Sorts{
+    public void swap(int a, int b){
+	T temp = heap[a];
+	heap[a] = heap[b];
+	heap[b] = temp;
+    }
+    public static void heapsort(int[] data){
+	heapify(data);
+	for (int i = data.length -1; i >= 0; i ++){
+	    swap(1,data[i]);
+	    pushDown(data[1],1);
+	}
+    }
+}

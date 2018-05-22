@@ -44,7 +44,6 @@ public class MyHeap<T extends Comparable<T>>{
 	heap[size-1] = s;
 	if (size > 1){
 	    //System.out.println("Just Checking");
-
 	    correction(s,size-1);
 	}
     }
@@ -157,6 +156,7 @@ public class MyHeap<T extends Comparable<T>>{
     }
 
     public void heapify(T[] data){
+	//type = true;
 	heap = data;
 	size = data.length;
 	for (int i = data.length-1; i >= 0; i--){
