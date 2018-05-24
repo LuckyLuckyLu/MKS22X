@@ -1,0 +1,53 @@
+public USACO2{
+    public static int silver{String filename){
+	int[][] pasture;
+	int row, col, time, initialRow, initialCol, finalRow, finalCol;
+	try{
+	    File file = new File(filename);
+	    Scanner in = new Scanner(file);
+	    //Adding values from beginning of file
+	    String[] DiamondAndPearl = in.nextLine().split(" ");
+	    row = Integer.parseInt(DiamondAndPearl[0]);
+	    col = Integer.parseInt(DiamondAndPearl[1]);
+	    time = Integer.parseInt(DiamondAndPearl[2]);
+	    pasture = new int[row][col];
+	    for(int r = 0; r < row; r++){
+		String newLine = in.nextLine();
+		//System.out.println(newLine);
+		String[] values = newLine.split("");
+		for (int c = 0; c < col; c++){
+		    if(values[c].equals(".")){
+			pasture[r][c] = 0;
+		    } else {
+			pasture[r][c] = -1;
+		    }
+		}
+		System.out.println(newLine);
+	    }
+	    String newLine;
+	    String[] instructions;
+	    newLine = in.nextLine();
+	    // Testing purposes: System.out.println(newLine);
+	    instructions= newLine.split(" ");
+	    initialRow = Integer.parseInt(instructions[0])-1;
+	    initialCol = Integer.parseInt(instructions[1])-1;
+	    finalRow = Integer.parseInt(instructions[2])-1;
+	    finalCol = Integer.parseInt(instructions[3])-1;
+	    pasture[initialRow][initialCol] = 1;
+	    String result = "";
+	    for (int i = 0; i < pasture.length; i++){
+		for (int j = 0; j < pasture[0].length; j++){
+		    result += pasture[i][j];
+		}
+		result += "\n";
+	    }
+	    System.out.println(result);
+	}
+	public int getNeighbors(int row, int col){
+	    int[][] neighbors = {{-1,0},
+				 {1,0},
+				 {0,-1},
+				 {0,1}}
+	}
+    }
+			  

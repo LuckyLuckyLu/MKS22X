@@ -124,7 +124,7 @@ public class USACO{
 	    pasture = new int[row][col];
 	    for(int r = 0; r < row; r++){
 		String newLine = in.nextLine();
-		//System.out.println(newLine);
+		System.out.println(newLine);
 		String[] values = newLine.split("");
 		for (int c = 0; c < col; c++){
 		    if(values[c].equals(".")){
