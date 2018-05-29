@@ -37,26 +37,35 @@ public class USACO2{
 	    finalRow = Integer.parseInt(instructions[2])-1;
 	    finalCol = Integer.parseInt(instructions[3])-1;
 	    pasture[initialRow][initialCol] = 1;
-	    int[][] duplicate = new int[row][col];
-	    for (int i = 0; i < row; i++){
-		for (int j = 0; j < row; j++){
-		    if (duplicate[i][j] >= 0){
-		    duplicate[i][j] = getNeighborSum(pasture,i,j);
-		}
+	    for (int k = 0; k < row; k++){
+		System.out.println(Arrays.toString(pasture[k]));
 	    }
-	    pasture = duplicate;
-	    String result = "";
-	    for (int i = 0; i < pasture.length; i++){
-		for (int j = 0; j < pasture[0].length; j++){
-		    result += pasture[i][j];
+	    for(int t = 0; t < time; t++){
+		int[][] duplicate = new int[row][col];
+		for (int k = 0; k < row; k++){
+		    for (int j = 0; j < col; j++){
+			if (pasture[k][j] >= 0){
+			    //System.out.println(getNeighborSum(pasture,k,j));
+			    duplicate[k][j] = getNeighborSum(pasture,k,j);
+			} else {
+			    duplicate[k][j] = pasture[k][j];
+			}
+		    }
 		}
-		result += "\n";
+		pasture = duplicate;
+		String result = "";
+		for (int i = 0; i < pasture.length; i++){
+		    for (int j = 0; j < pasture[0].length; j++){
+			result += pasture[i][j] + "   ";
+		    }
+		    result += "\n";
+		}
+		System.out.println(result);
 	    }
-	    System.out.println(result);
-	    return 1;
+	    return pasture[finalRow][finalCol];
 	}
-    	catch(FileNotFoundException e){
-	    return 0;    
+	catch(FileNotFoundException e){
+	    return 0;
 	}
     }
     public static int getNeighborSum(int[][] array, int row, int col){
@@ -83,24 +92,24 @@ public class USACO2{
 	//System.out.println(bronze("bronzeTest1.in"));
 	System.out.println(silver("silverTest1.in"));
 	/*int[][] test = new int[10][10];
-	test[5][5] = 1;
-	int[][] duplicate = new int[10][10];
-     	for (int i = 0; i < test.length; i++){
-	    for (int j = 0; j < test[0].length; j++){
-		if (duplicate[i][j] == 0){
-		    duplicate[i][j] = getNeighborSum(test,i,j);
-		} else {
-		    duplicate[i][j] = 0;
-		}
-	    }
-	}
+	  test[5][5] = 1;
+	  int[][] duplicate = new int[10][10];
+	  for (int i = 0; i < test.length; i++){
+	  for (int j = 0; j < test[0].length; j++){
+	  if (duplicate[i][j] == 0){
+	  duplicate[i][j] = getNeighborSum(test,i,j);
+	  } else {
+	  duplicate[i][j] = 0;
+	  }
+	  }
+	  }
 	
-	for (int i = 0; i < 10; i++){
-	    System.out.println(Arrays.toString(test[i]));
-	}
-	for (int i = 0; i < 10; i++){
-	    System.out.println(Arrays.toString(duplicate[i]));
-	}
+	  for (int i = 0; i < 10; i++){
+	  System.out.println(Arrays.toString(test[i]));
+	  }
+	  for (int i = 0; i < 10; i++){
+	  System.out.println(Arrays.toString(duplicate[i]));
+	  }
 	*/		       
     }
 }
