@@ -4,14 +4,14 @@ public class Merge{
     int[] temp = new int[data.length];
     //int[] Final = new int[data.length+temp.length];
 
-    mergesort(data,temp,0,data.length-1);
+    mergeSort(data,temp,0,data.length-1);
     System.out.println(toString(data));
   }
-  public static void mergeSort(int[] data){
+  public static void mergesort(int[] data){
     int[] temp = new int[data.length];
-    mergesort(data,temp,0,data.length-1);
+    mergeSort(data,temp,0,data.length-1);
   }
-  public static void mergesort(int[] data, int[] temp, int lo, int hi){
+  public static void mergeSort(int[] data, int[] temp, int lo, int hi){
     if(data.length <= 0){
       return;
     }
@@ -20,10 +20,10 @@ public class Merge{
     int slo=lo/2+hi/2+1; //hi-fhi;
     int shi=hi;
     if (flo != fhi){
-      mergesort(data, temp, flo, fhi);
+      mergeSort(data, temp, flo, fhi);
     }
     if (slo != shi){
-      mergesort(data, temp, slo, shi);
+      mergeSort(data, temp, slo, shi);
     }
     merge(data,temp,flo,fhi,slo,shi);
     for (int i=flo;i<=shi;i++){
