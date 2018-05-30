@@ -112,6 +112,7 @@ public class USACO{
     }
     public static int silver(String filename){
 	int[][] pasture;
+	
 	int row, col, time, initialRow, initialCol, finalRow, finalCol;
 	try{
 	    File file = new File(filename);
@@ -124,7 +125,7 @@ public class USACO{
 	    pasture = new int[row][col];
 	    for(int r = 0; r < row; r++){
 		String newLine = in.nextLine();
-		System.out.println(newLine);
+		//System.out.println(newLine);
 		String[] values = newLine.split("");
 		for (int c = 0; c < col; c++){
 		    if(values[c].equals(".")){
@@ -145,84 +146,100 @@ public class USACO{
 	    finalRow = Integer.parseInt(instructions[2])-1;
 	    finalCol = Integer.parseInt(instructions[3])-1;
 	    pasture[initialRow][initialCol] = 1;
-	    String result = "";
-	    for (int i = 0; i < pasture.length; i++){
-		for (int j = 0; j < pasture[0].length; j++){
-		    result += pasture[i][j];
-		}
-		result += "\n";
-	    }
-	    System.out.println(result);
-	    for (int timer = 0; timer < time; timer++){
-		pasture = pastureConverter(pasture,row,col);
-		result = "";
-		for (int i = 0; i < pasture.length; i++){
-		    for (int j = 0; j < pasture[0].length; j++){
-			result += pasture[i][j];
-		    }
-		    result += "\n";
-	    }
-	    System.out.println(result);
-
-	    }
-	    result = "";
-	    for (int i = 0; i < pasture.length; i++){
-		for (int j = 0; j < pasture[0].length; j++){
-		    result += pasture[i][j];
-		}
-		result += "\n";
-	    }
-	    System.out.println(result);
-	    return pasture[finalRow][finalCol];
-	}
-	catch(FileNotFoundException e){
-	    return 0;    
-	}
-    }
-
-    public static int[][] pastureConverter2(int[][] pasture, int row, int col){
-	return pasture;
-    }
-    
-    public static int[][] pastureConverter(int[][] pasture, int row, int col){
-	int[][] Convent = new int[row][col];
-	int[][] MoveSet = {{0,1},
-			   {0,-1},
-			   {1,0},
-			   {-1,0}};
-	int newRow, newCol;
-	for (int r = 0; r < row; r++){
-	    for (int c = 0; c < col; c++){
-		for (int i = 0; i < 4; i++){
-		    newRow = r+MoveSet[i][0];
-		    newCol = c+MoveSet[i][1];
-		    if (newRow >= 0 && newRow < row &&
-			newCol >= 0 && newCol < col){
-			if (pasture[newRow][newCol] != -1){
-			    Convent[newRow][newCol] += 1;
+	    //for (int k = 0; k < row; k++){
+	    //System.out.println(Arrays.toString(pasture[k]));
+	    //}
+	    for(int t = 0; t < time; t++){
+		int[][] duplicate = new int[row][col];
+		for (int k = 0; k < row; k++){
+		    for (int j = 0; j < col; j++){
+			if (pasture[k][j] >= 0){
+			    //System.out.println(getNeighborSum(pasture,k,j));
+			    duplicate[k][j] = getNeighborSum(pasture,k,j);
 			} else {
-			    Convent[newRow][newCol] = -1;
+			    duplicate[k][j] = pasture[k][j];
 			}
 		    }
 		}
-		Convent[r][c] = 0;
+		pasture = duplicate;
+		String result = "";
+		for (int i = 0; i < pasture.length; i++){
+		    for (int j = 0; j < pasture[0].length; j++){
+			result += pasture[i][j] + "   ";
+		    }
+		    result += "\n";
+		}
+		//System.out.println(result);
+	    }
+	    return pasture[finalRow][finalCol];
+	}
+	catch(FileNotFoundException e){
+	    return 0;
+	}
+    }
+    public static int getNeighborSum(int[][] array, int row, int col){
+	int[][] neighbors = {{-1,0},
+			     {1,0},
+			     {0,-1},
+			     {0,1}};
+	int sum = 0;
+	for (int i = 0; i < 4; i++){
+	    int rInc = neighbors[i][0];
+	    int cInc = neighbors[i][1];
+	    if (row+rInc < array.length && col+cInc < array[0].length &&
+		row+rInc >= 0 && col+cInc >= 0){
+		if (array[row+rInc][col+cInc] > 0){
+		    sum += array[row+rInc][col+cInc];
+		}
 	    }
 	}
-	return Convent;
+	return sum;
     }
-    public String toString(int[][] Array){
-	String result = "";
-	for (int i = 0; i < Array.length; i++){
-	    for (int j = 0; j < Array[0].length; j++){
-		result += Array[i][j];
-	    }
-	    result += "\n";
-	}
-	return result;
-    }
+    
+
+    // public static int[][] pastureConverter2(int[][] pasture, int row, int col){
+    // 	return pasture;
+    // }
+    
+    // public static int[][] pastureConverter(int[][] pasture, int row, int col){
+    // 	int[][] Convent = new int[row][col];
+    // 	int[][] MoveSet = {{0,1},
+    // 			   {0,-1},
+    // 			   {1,0},
+    // 			   {-1,0}};
+    // 	int newRow, newCol;
+    // 	for (int r = 0; r < row; r++){
+    // 	    for (int c = 0; c < col; c++){
+    // 		for (int i = 0; i < 4; i++){
+    // 		    newRow = r+MoveSet[i][0];
+    // 		    newCol = c+MoveSet[i][1];
+    // 		    if (newRow >= 0 && newRow < row &&
+    // 			newCol >= 0 && newCol < col){
+    // 			if (pasture[newRow][newCol] != -1){
+    // 			    Convent[newRow][newCol] += 1;
+    // 			} else {
+    // 			    Convent[newRow][newCol] = -1;
+    // 			}
+    // 		    }
+    // 		}
+    // 		Convent[r][c] = 0;
+    // 	    }
+    // 	}
+    // 	return Convent;
+    // }
+    // public String toString(int[][] Array){
+    // 	String result = "";
+    // 	for (int i = 0; i < Array.length; i++){
+    // 	    for (int j = 0; j < Array[0].length; j++){
+    // 		result += Array[i][j];
+    // 	    }
+    // 	    result += "\n";
+    // 	}
+    // 	return result;
+    // }
     public static void main(String[] Args){
 	//Bronze Driver
-	//System.out.println(bronze("bronzeTest1.in"));
+	System.out.println(bronze("bronzeTest1.in"));
 	System.out.println(silver("silverTest1.in"));
     }
 }
